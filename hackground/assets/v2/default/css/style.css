@@ -1,0 +1,635 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.notification_container{
+    height: 100%;
+    border-left: 1px solid #e6e0e0;
+    position: fixed;
+    width: 300px;
+    z-index: 10;
+    background: white;
+    top: 0px;
+    padding-top: 62px;
+	overflow: auto;
+	right:0px;
+  }
+  .left_nav {
+    position: fixed;
+    width: 265px;
+    left: 0px;
+    height: 100%;
+    top: 65px;
+    /* padding: 20px; */
+    border: 1px solid #e2dfdf;
+	background-color: white;
+}
+.profile_edit {
+    height: 100px;
+    padding-top: 24px;
+    padding-left: 20px;
+}
+.profile_edit p{
+	margin-top: 5px;
+}
+.profile_edit img{
+	float: left;
+	margin-right: 24px;
+}
+
+
+.collection.lmenu{
+	border: none;
+}
+
+.collection.lmenu i{
+	float:left;
+	margin-right: 15px;
+}
+#sidenav-overlay{
+	z-index: 996;
+}
+.collection a.collection-item{
+	color: #4f5e69;
+}
+.time {
+    color: grey;
+    font-size: 12px;
+}
+.msg-inline {
+    color: grey;
+    font-size: 14px;
+}
+.collection .collection-item.avatar .secondary-content.chat-list{
+	top:8px;
+}
+
+.chat-wrapper {
+    width: 436px;
+    position: fixed;
+    height: 100%;
+    right: 300px;
+    z-index: 10;
+	/* top: 0px; */
+	bottom:0px;
+	padding-top: 64px;
+    overflow: auto;
+    background: #f5f3f3;
+    display: none;
+    box-shadow: -1px 0 13px #a0a0a0;
+}
+
+
+.chat-heading{
+	padding: 10px 20px;
+	border-bottom: 1px solid #d8c9c9;
+	background-color: white;
+    
+}
+.chat-heading > img {
+    height: 50px;
+    width: 50px;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+.chat-heading .title{
+	font-size:18px;
+}
+
+.chat-heading ul.inline li{
+	display: inline-block;
+}
+
+.chat-body {
+    position: absolute;
+    /*border: 1px solid grey;*/
+    width: 100%;
+    height: 68%;
+    padding: 10px;
+    overflow: auto;
+}
+
+.chat-foot {
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    padding: 10px;
+    overflow: auto;
+    bottom: 0px;
+    /* border: 1px solid grey; */
+    background-color: white;
+    z-index: 10;
+    box-shadow: 0 0px 3px #a7a1a1;
+}
+
+ .mininized-chat {
+	position: fixed;
+	bottom: 0px;
+	right: 300px;
+	z-index: 9;
+}
+
+.chip.minimized {
+	cursor: pointer;
+}
+
+.p_main{
+	max-width: 1035px;
+	margin-top: -16px;
+	
+}
+
+.profile_bg {
+			height: 230px;
+			background-size: cover;
+}
+.profile_pic{
+	position: relative;
+	margin-top: -85px;
+}
+
+.profile_pic img{
+	display: block;
+	margin: 0px auto;
+	height: 150px;
+	width: 150px;
+}
+.profile_pic .name{
+	text-align: center;
+	margin: 0px;
+}
+
+.profile_pic .name a{
+	color: black;
+	font-size: 26px;
+}
+
+.profile_pic .age {
+	color: grey;
+	font-size: 15px;
+}
+.btn-more{
+	max-width: 430px;
+	margin: 15px auto;
+}
+.profile-body {
+	min-height: 500px;
+	border: 1px solid #dad7d7;
+	margin-top:30px;
+}
+.relationship_icon{
+	background-image: url('https://d30y9cdsu7xlg0.cloudfront.net/png/83410-200.png');
+	height: 50px;
+	width:50px;
+	display: block;
+	float: left;
+	background-size: cover;
+	margin-right: 30px;
+}
+.relationship {
+	padding: 20px;
+	/* text-align: center; */
+	border-bottom: 1px solid #e6e1e1;
+	margin-bottom: 21px;
+}
+
+.relationship-value {
+	float: right;
+	font-size: 20px;
+	
+	line-height: 36px;
+	color: #E91E63;
+	text-shadow: 1px 1px 1px #e45082;
+}
+.basic-info {
+	border: 1px solid #e6e1e1;
+}
+.basic-info-head,.about-head {
+	padding: 10px;
+	
+}
+.basic-body {
+    padding: 10px;
+}
+
+		
+.basic-info-value {
+    float: right;
+    color: #347fbb;
+	 line-height: 45px;
+}
+
+span.basic-info-label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 45px;
+}
+
+.relationship-title {
+	font-size: 29px;
+}
+
+.about-sec {
+    border: 1px solid #e6e1e1;
+    margin-top: 19px;
+    margin-bottom: 20px;
+}
+
+.about-body {
+    padding: 10px;
+    font-size: 13px;
+}
+
+.btn.sm-padding, .btn-large.sm-padding, .btn-flat.sm-padding {
+  padding: 0 1rem;
+  
+}
+
+.box {
+    border: 1px solid #d6c9c9;
+    min-height: 200px;
+    position: relative;
+}
+
+.pad_10{
+	padding: 10px;
+}
+
+.error {
+    color: #ca2828;
+    font-size: 14px;
+}
+
+.error.pos{
+	position: relative;
+    top: -13px;
+}
+
+.file-uploader {
+    height: 150px;
+    width: 150px;
+    border: 1px dashed #888b8e;
+    margin: auto auto;
+    position: relative;
+    background: #fff;
+	margin-bottom:25px;
+}
+
+.file-uploader input[type=file]{
+	position: absolute;
+	height:100%;
+	width:100%;
+	top:0px;
+	left:0px;
+	cursor:pointer;
+	opacity: 0;
+	
+}
+
+
+input.default {
+    background: white;
+    color: black;
+    box-sizing: border-box;
+    padding: 0px 16px;
+    height: 38px;
+    margin: 0px;
+}
+
+.profile-pic-wrapper {
+			width: 150px;
+			height: 150px;
+			margin: 50px auto;
+			position: relative;
+		}
+		
+		.profile-pic-wrapper img{
+			width: 150px;
+			height: 150px;
+			border: 1px solid #dbddde;
+		}
+		
+		.overlay.dark {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			background: black;
+			top: 0px;
+			left: 0px;
+			opacity: 0.6;
+			display:none;
+		}
+		.camera-icon{
+			display:none;
+		}
+		
+		.profile-pic-wrapper:hover .overlay.dark{
+			display:block;
+		}
+		
+		.profile-pic-wrapper:hover .camera-icon{
+			display:block;
+		}
+		
+		.uploaded-image-wrapper{
+			max-height: 410px;
+			min-height: 250px;
+		}
+		
+	ul.tab-block {
+		margin: 0px;
+		display: flex;
+		margin-bottom:20px;
+	}
+	
+	ul.tab-block li {
+    width: 100%;
+    background: #e2dede;
+    border: 1px solid #cecaca;
+}
+
+ul.tab-block li:first-child{
+	border-right:0px;
+}
+	ul.tab-block li a{
+		display:block;
+		padding: 20px;
+		text-align:center;
+	}
+	
+	.tab-content-c:not(.active){
+		display:none;
+	}
+	
+	.image-list {
+    overflow: hidden;
+    margin-bottom: 17px;
+    border-bottom: 1px solid #e0dada;
+    padding-bottom: 10px;
+}
+
+
+	.image-list img{
+		width: 100%;
+		min-height: 100%;
+	}
+	
+	.image-list .img-thumb {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    float: left;
+    margin: 8px;
+    overflow: hidden;
+}
+
+.hidden{
+	display:none;
+}
+
+		.search-wrapper {
+	    border: 1px solid #d6cbcb;
+		border-radius: 2px;
+		box-shadow: 0px 2px 8px #ada7a7;
+		position: relative;
+	}
+	
+	li.result-item {
+	position: relative;
+    padding: 10px 10px 10px 100px;
+	   border: 1px solid #d6d0d0;
+    margin-bottom: 20px;
+}
+.search-result li.result-item img:not(.img-button-sm){
+	height: 80px;
+    width: 80px;
+    position: absolute;
+    border: 1px solid #c1b7b7;
+    border-radius: 100%;
+    left: 8px;
+    top: 12px;
+}	
+p.age {
+   margin: 0px 0px 5px 0px;
+    font-size: 12px;
+    color: #a29898;
+    font-weight: 400;
+}
+span.age {
+    font-size: 12px;
+    color: #a29898;
+    font-weight: 400;
+}
+
+.result-btn-wrapper {
+    display: flex;
+	width: 100%;
+}
+
+.result-btn-wrapper button.search-btn {
+    width: 100%;
+        padding: 7px 15px;
+    border: none;
+    margin: 0px 3px 0px 0px;
+	    border-radius: 3px;
+   /* box-shadow: 1px 2px 3px #9c9696;*/
+}
+
+
+button.add-frind, button.add-frind:focus{
+    background: #03A9F4;
+    color: white;
+}
+button.propose, button.propose:focus{
+    background: #E91E63;
+    color: white;
+}
+.panel {
+    border: 1px solid #dad7d7;
+}
+.panel-head {
+    padding: 11px;
+    background: #efeeee;
+}
+
+.panel-body {
+    padding: 0px 15px;
+	background: white;
+}
+
+.search-fields p{
+	margin: 15px 0px 0px 0px;
+}
+
+.search-fields {
+    margin-bottom: 18px;
+	position: relative;
+}
+button.friend-requested, button.friend-requested:focus {
+    background-color: #12709a;
+    color: white;
+}
+
+button.propose-waiting, button.propose-waiting:focus {
+    background-color: #b30e46;
+    color: white;
+}
+
+button.accept-friend , button.accept-friend:focus{
+    background: #2670ab;
+    color: white;
+}
+button.proposed ,  button.proposed:focus {
+    background-color: #d63f73;
+    color: white;
+}
+button.friend, button.friend:focus {
+    background-color: #4CAF50;
+    color: white;
+	cursor: default;
+}	
+button.love, button.love:focus {
+    background-color: #E91E63;
+    color: white;
+	cursor: default;
+}
+
+
+/* Custom autocomplete css */
+
+ul.autocomplete-custom {
+    position: absolute;
+    top: 46px;
+    z-index: 10;
+    background: white;
+    width: 100%;
+    border: 1px solid #ded8d8;
+    box-shadow: 1px 1px 12px #c5c3c3;
+	display: none;
+}
+.autocompleteCustomBox {
+    position: relative;
+}
+ul.autocomplete-custom li{
+	    padding: 10px;
+    border-bottom: 1px solid #dcd4d4;
+	cursor: pointer;
+}
+
+
+span.autocomplete-icon img{
+	height: 37px;
+	width: 37px;
+	margin-right: 10px;
+	margin-top: -8px;
+}
+
+input.active {
+    padding-right: 36px;
+    box-sizing: border-box;
+}
+
+.autocompleteCustomBox span.remove{
+	position: absolute;
+    right: 44px;
+    cursor: pointer;
+    top: 5px;
+}
+
+
+.collection .collection-item.active{
+	background-color: #2249a3;
+}
+
+input.style-form {
+height: 35px;
+}
+
+input.style-form, textarea.style-form {
+ font-family: open sans;
+  border: 1px solid #d6cccc;
+  padding: 8px;
+ 
+  box-sizing: border-box;
+}
+textarea.style-form {
+  resize:vertical;
+}
+
+input.style-form:focus:not([readonly]), textarea.style-form:focus:not([readonly]){
+  border: 1px solid #85b7d9;
+  box-shadow: none;
+  outline:0;
+}
+
+
+
+
+/*  EXTENDED CSS */
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: #4a4b4d;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after {
+    border: 2px solid #4a4b4d;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #636565;
+   
+}
+
+[type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid #4a4b4d;
+    background-color: #4a4b4d;
+}
+
+/*Media css */ 
+ /*
+	This css will always be in bottom to overwrite the main css for media
+	
+ */
+  /*For desktop*/
+@media only screen and (min-width: 768px) {
+  .content_wrapper {
+		max-width: 808px;
+		margin: auto;
+		padding-right: 35px;
+	}
+	
+}
+
+  /*For mobile*/
+@media only screen and (max-width: 550px) {
+
+	.relationship-title {
+		font-size: 20px;
+	}
+	.relationship-value{
+		    font-size: 13px;
+	}
+	.relationship_icon{
+		margin-top: -10px;
+	}
+}
+
+/* overwriting core */
+
+.input-field {
+    position: relative;
+    margin-top: 0.5rem;
+}

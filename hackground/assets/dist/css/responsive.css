@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media (min-width: 0) {
+	html {
+		font-size: 15px;
+	}
+}
+@media (min-width: 768px) {
+	.modal-dialog {
+		max-width: 600px;
+	}
+	body {
+		overflow-y:hidden;
+	}
+	.main-footer {
+		position: absolute;
+	}
+}
+@media (min-width: 1200px) {
+	html{
+		font-size: 16px
+	}
+	
+}
+@media (max-width:767px) {
+	.nav-tabs {
+		flex-wrap: inherit;
+		height: 40px;
+		overflow-x: auto;
+	}
+	.table td:not(:last-child) {
+		white-space: nowrap;
+		max-width: 320px;
+		overflow:hidden;
+		text-overflow: ellipsis;
+	}
+}

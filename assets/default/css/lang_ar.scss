@@ -1,0 +1,690 @@
+@charset "utf-8";
+/* CSS Document */
+
+$start: 		right !default;
+$end: 			left !default;
+
+.input-with-icon-start{
+	i{
+		#{$start}: 12px;
+	}
+}
+.pull-right {
+	float: $end !important;
+}
+#logo {
+	float: $start;
+}
+#header {
+	.end-side {
+		float: $start;
+	}
+	.end-side {
+		float: $end;
+	}
+}
+#navigation {
+	float: $start;
+	ul {
+		li {
+			float: $start;
+		}
+	}
+}
+.intro-banner-search-form {
+	.input-with-icon {
+		i {
+			#{$end}: auto;
+			#{$start}: 12px;
+		}
+	}
+}
+.buttons-to-end {
+	#{$end}: 1.25rem;
+}
+.dashboard-box-list {
+	.button.to-right {
+		#{$end}: 1.25rem;
+	}
+	.buttons-to-end.always-visible {
+		.btn {
+			margin: 0;
+			margin-inline-end: 3px;
+		}
+	}
+}
+.photo-box-portfolio-content {
+	#{$start}: 20px;
+}
+.photo-box-content {
+	#{$start}: 20px;
+}
+.input-with-icon-start {
+	i {
+		#{$start}: 12px;
+	}
+}
+.simplebar-track {
+	#{$end}: 0;
+}
+.simplebar-scrollbar {
+	#{$end}: 6px;
+}
+.header-widget {
+	float: $start;
+	&:last-of-type {
+		float: $end;
+	}
+}
+.list-3 {
+	li {
+		&:before {
+			#{$start}: 0;
+			content: "\e910";
+		}
+	}
+}
+.list-2 {
+	li {
+		&:before {
+			#{$start}: 0;
+		}
+	}
+}
+.list-1 {
+	li {
+		&:before {
+			#{$start}: 0;
+		}
+	}
+}
+.header-notifications-trigger {
+	span {
+		#{$end}: -7px;
+	}
+}
+.dashboard-nav {
+	ul {
+		li {
+			a {
+				&:after {
+					#{$end}: 1.25rem;
+				}
+			}
+		}
+	}
+}
+.header-notifications-dropdown {
+	#{$end}: -15px;
+	&:before {
+		#{$end}: 43px;
+	}
+}
+.searchbox {
+	.input-group {
+		&:before {
+			#{$start}: 18px;
+		}
+	}
+}
+.tokenize {
+	>.tokens-container {
+		>.token {
+			margin-inline-end: 5px;
+		}
+		>.placeholder {
+			margin-inline-end: 5px;
+		}
+		>.token-search {
+			margin-inline-end: 5px;
+		}
+	}
+}
+.bootstrap-select.btn-group {
+	button {
+		text-align: $start;
+	}
+	.dropdown-toggle {
+		.filter-option {
+			float: $start;
+		}
+		.caret {
+			#{$end}: 20px;
+		}
+	}
+}
+.skill_search {
+	.chip {
+		margin-inline-end: 6px;
+		padding-inline-end: 1.5rem;
+		>a {
+			#{$end}: 0.5rem;
+		}
+	}
+}
+.single-page-header {
+	.header-image {
+		margin-#{$end}: 1.25rem;
+	}
+}
+.share-buttons-icons {
+	#{$start}: 5px;
+}
+.freelancers-list-layout {
+	.freelancer-details {
+		a.button {
+			float: $end;
+		}
+	}
+}
+.mm-menu {
+	#{$start}: 0;
+}
+.home-banner {
+	.carousel-indicators {
+		#{$start}: auto;
+	}
+}
+.how-steps {
+	#{$end}: -2rem;
+}
+#backtotop {
+	#{$end}: 25px;
+}
+.btn-circle.ico {
+	#{$end}: 1rem;
+}
+.bootbox {
+	.modal-header {
+		.pull-left {
+			#{$start}: 21px;
+		}
+		.btn-black {
+			#{$start}: 21px;
+		}
+		.btn-danger {
+			#{$start}: 21px;
+		}
+		.pull-right {
+			#{$end}: 21px;
+		}
+		.btn-success {
+			#{$end}: 21px;
+		}
+		.btn-primary {
+			#{$end}: 21px;
+		}
+	}
+}
+.avatar-preview {
+	float: $start;
+}
+.action-btn {
+	#{$end}: 15px;
+}
+.job-task-info {
+	>li {
+		border-inline-end: 1px solid #d0d0d0;
+		&:last-child {
+			border-inline-end: 0;
+		}
+	}
+}
+#filter {
+	#{$end}: 20px;
+}
+.freelancer-socials {
+	span.bookmark-icon {
+		#{$end}: 0;
+	}
+}
+.profile {
+	.verified-badge {
+		#{$end}: 6px;
+	}
+}
+.activity-feed {
+	.icon-feather-check-all {
+		&:after {
+			#{$start}: -10px;
+		}
+	}
+}
+.edit-message {
+	#{$end}: 10px;
+}
+em.mm-counter {
+	#{$end}: 45px;
+}
+em.mm-counter+a.mm-next+a {
+	margin-inline-end: 90px;
+}
+em.mm-counter+a.mm-next+span {
+	margin-inline-end: 90px;
+}
+em.mm-counter+a.mm-fullsubopen {
+	padding-inline-start: 0;
+}
+em.mm-counter+a.mm-fullsubopen+a {
+	padding-inline-end: 90px;
+}
+em.mm-counter+a.mm-fullsubopen+span {
+	padding-inline-end: 90px;
+}
+.mm-listview {
+	em.mm-counter+.mm-next.mm-fullsubopen+a {
+		padding-inline-end: 90px;
+	}
+	em.mm-counter+.mm-next.mm-fullsubopen+span {
+		padding-inline-end: 90px;
+	}
+}
+.hamburger {
+	#{$start}: 5px;
+}
+.mm-prev {
+	&:before {
+		-webkit-transform: rotate(135deg);
+		-ms-transform: rotate(135deg);
+		transform: rotate(135deg);
+		#{$start}: 23px;
+		#{$end}: auto;
+	}
+}
+.mm-next {
+	&:after {
+		-webkit-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		#{$end}: 23px;
+		#{$start}: auto;
+	}
+}
+.mm-navbar {
+	.mm-btn {
+		&:first-child {
+			#{$start}: 0;
+		}
+		&:last-child {
+			text-align: $end;
+			#{$end}: 0;
+		}
+	}
+}
+ol.counter-list {
+	li {
+		&:after {
+			#{$start}: -2.5em;
+			text-align: $end;
+		}
+	}
+}
+.featuredimg {
+	#{$end}: -9px;
+}
+.block {
+	a.edit {
+		float: $end;
+	}
+	a.icon-round {
+		float: $end;
+	}
+}
+#slide-nav {
+	.navbar-toggle {
+		float: $start;
+	}
+}
+.magic-radio {
+	+ {
+		label {
+			&:before {
+				#{$start}: 0;
+			}
+			&:after {
+				#{$start}: 5px;
+			}
+		}
+	}
+}
+.magic-checkbox {
+	+ {
+		label {
+			&:before {
+				#{$start}: 0;
+			}
+			&:after {
+				#{$start}: 7px;
+			}
+		}
+	}
+}
+div.dataTables_paginate {
+	text-align: $end;
+}
+.conversation_loop.me {
+	flex-direction: row-reverse;
+	.starred {
+		#{$start}: -25px;
+	}
+}
+.conversation_loop.other {
+	.starred {
+		#{$end}: -25px;
+	}
+}
+.setting-circle {
+	#{$end}: 5px;
+}
+.menu_hide {
+	#{$end}: 5px;
+}
+.quicknav {
+	#{$end}: -280px;
+}
+.ecdevsec {
+	.user-sidebar-container {
+		.sidebar-close-alt {
+			#{$end}: 15px;
+		}
+	}
+}
+.secondary_info {
+	#{$end}: 0;
+}
+.secondary_info {
+	#{$end}: 0;
+}
+ul.tab {
+	li {
+		float: $start;
+	}
+}
+.msg-count {
+	#{$end}: 0;
+}
+
+.messages-container-inner {
+	.message-by-headline {
+		span {
+			#{$end}: 1rem;
+		}
+	}
+	.messages-inbox {
+		.message-avatar {
+			#{$start}: 1rem;
+		}
+	}
+}
+.message-by-headline {
+	span {
+		float: $end;
+	}
+}
+.message-action {
+	#{$end}: 1rem;
+}
+.input-with-icon {
+	i {
+		#{$end}: 1rem;
+	}
+}
+.message-bubble {
+	.message-avatar {
+		#{$start}: 0;
+	}
+	.message-text {
+		margin-inline-start: 55px;
+		&:before {
+			#{$start}: -6px;
+			#{$end}: auto;
+		}
+	}
+}
+.message-bubble.me {
+	.message-avatar {
+		#{$start}: auto;
+		#{$end}: 0;
+	}
+	.message-text {
+		float: $end;
+		&:before {
+			border-inline-end: none;
+			#{$end}: -6px;
+			#{$start}: auto;
+		}
+	}
+	.message-text.message-deleted {
+		&:before {
+			border-inline-start-color: rgb(220 53 69 / 0.1);
+		}
+	}
+	.fav-star {
+		#{$start}: -5px;
+		#{$end}: auto;
+	}
+	.fixed-action-btn {
+		#{$start}: -30px;
+		#{$end}: auto;
+		ul {
+			#{$start}: auto;
+			#{$end}: 15px;
+		}
+	}
+}
+.fav-star {
+	left: -5px;
+}
+.fixed-action-btn {
+	left: -30px;
+	ul {
+		right: 15px;
+	}
+}
+.user-menu {
+	.header-notifications-dropdown {
+		&:before {
+			#{$end}: 25px;
+		}
+	}
+}
+.status-icon {
+	#{$end}: 0;
+}
+.notification-avatar {
+	&:after {
+		#{$end}: 0;
+	}
+}
+.user-avatar {
+	&:after {
+		#{$end}: 0;
+	}
+}
+.job-overview {
+	.job-overview-inner {
+		ul {
+			li {
+				i {
+					#{$start}: 0;
+				}
+			}
+		}
+	}
+}
+.toggleUD {
+	#{$end}: 1.25rem;
+}
+.number {
+	#{$start}: 1.25rem;
+}
+.ribbon-top-right {
+	#{$end}: -15px;
+	span {
+		#{$start}: 30px;
+		transform: rotate(-45deg);
+	}
+}
+.dashboard-box {
+	.freelancer-overview {
+		.freelancer-name {
+			text-align: $start;
+		}
+	}
+}
+.comment-by {
+	.status {
+		#{$end}: 0;
+	}
+}
+.comments {
+	ul {
+		li {
+			ul {
+				li {
+					&:before {
+						#{$start}: -25px;
+					}
+				}
+			}
+		}
+	}
+}
+.avatar {
+	float: $start;
+	#{$start}: 0px;
+}
+.checkbox {
+	label {
+		span.checkbox-icon {
+			#{$start}: 0;
+		}
+	}
+}
+.message-quote {
+	.close {
+		#{$end}: 10px;
+	}
+}
+ul.postJobStep {
+	li {
+		a {
+			i {
+				&:last-child {
+					float: $end;
+				}
+			}
+		}
+	}
+}
+.attachment-box {
+	i.icon-feather-download {
+		#{$end}: 1rem;
+	}
+}
+.footer-links {
+	h4 {
+		a {
+			float: $end;
+		}
+	}
+}
+.dashboard-box .btn.ico.removeaccount{
+	#{$end}: -10px;
+}
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-right: -1px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+	border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating), .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control, .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+	border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+
+@media only screen and (min-width: 768px) {
+	.banner-search:before{
+		transform: rotate(65deg) translate(0%, -75%);
+	}
+}
+@media all and (max-width:175px) {
+	 html.mm-opening .mm-menu.mm-opened~.mm-slideout {
+	 -webkit-transform: translate(-140px, 0);
+	 -ms-transform: translate(-140px, 0);
+	 transform: translate(-140px, 0);
+	 -webkit-transform: translate3d(-140px, 0, 0);
+	 transform: translate3d(-140px, 0, 0)
+	}
+}
+@media all and (min-width:550px) {
+	 html.mm-opening .mm-menu.mm-opened~.mm-slideout {
+	 -webkit-transform: translate(-440px, 0);
+	 -ms-transform: translate(-440px, 0);
+	 transform: translate(-440px, 0);
+	 -webkit-transform: translate3d(-440px, 0, 0);
+	 transform: translate3d(-440px, 0, 0)
+	}
+}
+@media (max-width: 991px) {
+	.fullwidth .header-widget:last-of-type, .header-widget:last-of-type {
+		padding-inline-end: 15px;
+		float: $start;
+	}
+	.mmenu-trigger {
+		margin: 0 0 0 -5px;
+		float: $end;
+	}
+	#header .end-side {
+		#{$end}: 20px;
+	}
+}
+
+ @media (max-width: 768px) {
+	.user-menu .header-notifications-dropdown, .header-notifications-dropdown {
+		#{$end}: -10px;
+	}
+}
+@media (min-width: 767.98px) {
+	.navbar-right .dropdown-menu {
+		#{$start}: auto !important;
+		#{$end}: 0 !important;
+	}	
+	.signup:before {
+		background-color:#29b6f6;
+	}
+	.signup:after {		
+		background-color:#2C597A;	
+	}
+	.brr-0 {
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+}
+@media only screen and (min-width: 992px) {
+
+}
+
+ @media (max-width: 991.98px) {
+	.message-bubble.me .message-text{
+		margin:0;
+	}
+}
+
+/* ARABIC SPECIAL */
+.pagination {
+	li {
+		a {
+			i {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
+
+/* END CSS */

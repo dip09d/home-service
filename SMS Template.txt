@@ -1,0 +1,35 @@
+Used SMS API
+============
+1) Login Customer and Worker Send SMS Confirm validation for login(customer and Worker)  => OTP SMS
+1707176968531906520
+Your OTP for mobile number authentication is {#var#} Do not Share With Anyone. -MAIDFORT
+=> DONE
+ 
+2) Admin Worker Profile Active Send SMS worker mobile number (worker)  => Worker Congratulations (Congratulations! Your worker profile is now active. Login to your account and begin accepting bookings to earn. Wishing you success!)
+ 1707177390433850891
+ Congratulations! Your profile is now active. Login to your account and begin accepting bookings to earn. Wishing you success! -MAIDFORT
+=> DONE
+
+3) Admin Worker Profile Active Send SMS worker mobile number (customer)  => Worker Congratulations (Congratulations! Your account has been created successfully. Log in now to book our on-demand services.)
+ 1707177390286335778
+ Congratulations! Your account has been created successfully. Log in now to book our on-demand services. -MAIDFORT
+=> DONE
+
+4) Customer Booking Requested Send worker mobile number(worker)  => Booking Details(New booking request received. Customer: [Name], Service: [Service], Date: [Date], Time: [Time], Location: [Area]. Login to accept the booking.)
+ 1707177390193768842
+ New booking request received. Customer: {#var#}, Service: {#var#}, Date: {#var#}, Time: {#var#}, Location: {#var#} . Login to accept the booking. MAIDFORT
+=> NA
+
+5) Job Accept worker Send SMS customer mobile number(customer)  => Job Accept (Your booking is confirmed. Worker: [Name], Service: [Service], Date: [Date], Time: [Time]. Thank you!)
+ 1707177390234435834
+ Your booking is confirmed. Worker: {#var#}, Service: {#var#}, Date: {#var#}, Time: {#var#} . Thank you! -MAIDFORT
+ => DONE
+
+6) Job Complected Send SMS customer mobile number(customer)  = > billing details (Your service is completed. Bill Amount: ₹[Amount].  Bill Number: [number]. Thank you for choosing us! For support, contact us anytime.)
+ 1707177390479483060
+ Your Manpower service is completed. Bill Amount: Rs. {#var#}. Bill Number: {#var#}. Thank you for choosing us! For support, contact us anytime. MAIDFORT
+ => DONE
+ 
+7) Payment Done  Send SMS customer mobile number(customer) =>Payment Done (Payment received successfully. Amount: ₹[Amount]. Thank you for choosing our service!)
+Payment received successfully. manpower service Amount: Rs. {#var#}. Thank you for choosing our service! -MAIDFORT
+1707177390474228474

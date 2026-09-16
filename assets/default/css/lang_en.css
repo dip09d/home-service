@@ -1,0 +1,553 @@
+/* CSS Document */
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+#logo {
+  float: left;
+}
+
+#header .start-side {
+  float: left;
+}
+#header .end-side {
+  float: right;
+}
+
+#navigation {
+  float: left;
+}
+#navigation ul li {
+  float: left;
+}
+
+.intro-banner-search-form .input-with-icon i {
+  right: auto;
+  left: 12px;
+}
+
+.buttons-to-end {
+  right: 1.25rem;
+}
+
+.dashboard-box-list .button.to-right {
+  right: 1.25rem;
+}
+.dashboard-box-list .buttons-to-end.always-visible .btn {
+  margin: 0;
+  margin-inline-end: 3px;
+}
+
+.photo-box-portfolio-content {
+  left: 20px;
+}
+
+.photo-box-content {
+  left: 20px;
+}
+
+.input-with-icon-start i {
+  left: 12px;
+}
+
+.simplebar-track {
+  right: 0;
+}
+
+.simplebar-scrollbar {
+  right: 6px;
+}
+
+.header-widget {
+  float: left;
+}
+.header-widget:last-of-type {
+  float: right;
+}
+
+.list-3 li:before {
+  left: 0;
+}
+
+.list-2 li:before {
+  left: 0;
+}
+
+.list-1 li:before {
+  left: 0;
+}
+
+.header-notifications-trigger span {
+  right: -7px;
+}
+
+.dashboard-nav ul li a:after {
+  right: 1.25rem;
+}
+
+.header-notifications-dropdown {
+  right: -15px;
+}
+.header-notifications-dropdown:before {
+  right: 43px;
+}
+
+.searchbox .input-group:before {
+  left: 18px;
+}
+
+.tokenize > .tokens-container > .token {
+  margin-inline-end: 5px;
+}
+.tokenize > .tokens-container > .placeholder {
+  margin-inline-end: 5px;
+}
+.tokenize > .tokens-container > .token-search {
+  margin-inline-end: 5px;
+}
+
+.bootstrap-select.btn-group button {
+  text-align: left;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+  float: left;
+}
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+  right: 20px;
+}
+
+.skill_search .chip {
+  margin-inline-end: 6px;
+  padding-inline-end: 1.5rem;
+}
+.skill_search .chip > a {
+  right: 0.5rem;
+}
+
+.single-page-header .header-image {
+  margin-right: 1.25rem;
+}
+
+.share-buttons-icons {
+  left: 5px;
+}
+
+.freelancers-list-layout .freelancer-details a.button {
+  float: right;
+}
+
+.mm-menu {
+  left: 0;
+}
+
+.home-banner .carousel-indicators {
+  left: auto;
+}
+
+.how-steps {
+  right: -2rem;
+}
+
+#backtotop {
+  right: 25px;
+}
+
+.btn-circle.ico {
+  right: 1rem;
+}
+
+.bootbox .modal-header .pull-left {
+  left: 21px;
+}
+.bootbox .modal-header .btn-black {
+  left: 21px;
+}
+.bootbox .modal-header .btn-danger {
+  left: 21px;
+}
+.bootbox .modal-header .pull-right {
+  right: 21px;
+}
+.bootbox .modal-header .btn-success {
+  right: 21px;
+}
+.bootbox .modal-header .btn-primary {
+  right: 21px;
+}
+
+.avatar-preview {
+  float: left;
+}
+
+.action-btn {
+  right: 15px;
+}
+
+.job-task-info > li {
+  border-inline-end: 1px solid #d0d0d0;
+}
+.job-task-info > li:last-child {
+  border-inline-end: 0;
+}
+
+#filter {
+  right: 20px;
+}
+
+.freelancer-socials span.bookmark-icon {
+  right: 0;
+}
+
+.profile .verified-badge {
+  right: 6px;
+}
+
+.activity-feed .icon-feather-check-all:after {
+  left: -10px;
+}
+
+.edit-message {
+  right: 10px;
+}
+
+em.mm-counter {
+  right: 45px;
+}
+
+em.mm-counter + a.mm-next + a {
+  margin-inline-end: 90px;
+}
+
+em.mm-counter + a.mm-next + span {
+  margin-inline-end: 90px;
+}
+
+em.mm-counter + a.mm-fullsubopen {
+  padding-inline-start: 0;
+}
+
+em.mm-counter + a.mm-fullsubopen + a {
+  padding-inline-end: 90px;
+}
+
+em.mm-counter + a.mm-fullsubopen + span {
+  padding-inline-end: 90px;
+}
+
+.mm-listview em.mm-counter + .mm-next.mm-fullsubopen + a {
+  padding-inline-end: 90px;
+}
+.mm-listview em.mm-counter + .mm-next.mm-fullsubopen + span {
+  padding-inline-end: 90px;
+}
+
+.hamburger {
+  left: 5px;
+}
+
+.mm-prev:before {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  left: 23px;
+  right: auto;
+}
+
+.mm-next:after {
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  transform: rotate(135deg);
+  right: 23px;
+  left: auto;
+}
+
+.mm-navbar .mm-btn:first-child {
+  left: 0;
+}
+.mm-navbar .mm-btn:last-child {
+  text-align: right;
+  right: 0;
+}
+
+ol.counter-list li:after {
+  left: -2.5em;
+  text-align: right;
+}
+
+.featuredimg {
+  right: -9px;
+}
+
+.block a.edit {
+  float: right;
+}
+.block a.icon-round {
+  float: right;
+}
+
+#slide-nav .navbar-toggle {
+  float: left;
+}
+
+.magic-radio + label:before {
+  left: 0;
+}
+.magic-radio + label:after {
+  left: 5px;
+}
+
+.magic-checkbox + label:before {
+  left: 0;
+}
+.magic-checkbox + label:after {
+  left: 7px;
+}
+
+div.dataTables_paginate {
+  text-align: right;
+}
+
+.conversation_loop.me {
+  flex-direction: row-reverse;
+}
+.conversation_loop.me .starred {
+  left: -25px;
+}
+
+.conversation_loop.other .starred {
+  right: -25px;
+}
+
+.setting-circle {
+  right: 5px;
+}
+
+.menu_hide {
+  right: 5px;
+}
+
+.quicknav {
+  right: -280px;
+}
+
+.ecdevsec .user-sidebar-container .sidebar-close-alt {
+  right: 15px;
+}
+
+.secondary_info {
+  right: 0;
+}
+
+ul.tab li {
+  float: left;
+}
+
+.msg-count {
+  right: 0;
+}
+
+.messages-container-inner .message-by-headline span {
+  right: 1rem;
+}
+.messages-container-inner .messages-inbox .message-avatar {
+  left: 1rem;
+}
+
+.message-by-headline span {
+  float: right;
+}
+
+.message-action {
+  right: 1rem;
+}
+
+.input-with-icon i {
+  right: 1rem;
+}
+
+.message-bubble .message-avatar {
+  left: 0;
+}
+.message-bubble .message-text {
+  margin-inline-start: 55px;
+}
+.message-bubble .message-text:before {
+  left: -6px;
+  right: auto;
+}
+
+.message-bubble.me .message-avatar {
+  left: auto;
+  right: 0;
+}
+.message-bubble.me .message-text {
+  float: right;
+}
+.message-bubble.me .message-text:before {
+  border-inline-end: none;
+  right: -6px;
+  left: auto;
+}
+.message-bubble.me .message-text.message-deleted:before {
+  border-inline-start-color: rgba(220, 53, 69, 0.1);
+}
+.message-bubble.me .fav-star {
+  left: -5px;
+  right: auto;
+}
+.message-bubble.me .fixed-action-btn {
+  left: -30px;
+  right: auto;
+}
+.message-bubble.me .fixed-action-btn ul {
+  left: auto;
+  right: 15px;
+}
+
+.fav-star {
+  right: -5px;
+}
+
+.fixed-action-btn {
+  right: -30px;
+}
+.fixed-action-btn ul {
+  left: 15px;
+}
+
+.user-menu .header-notifications-dropdown:before {
+  right: 25px;
+}
+
+.status-icon {
+  right: 0;
+}
+
+.notification-avatar:after {
+  right: 0;
+}
+
+.user-avatar:after {
+  right: 0;
+}
+
+.job-overview .job-overview-inner ul li i {
+  left: 0;
+}
+
+.toggleUD {
+  right: 1.25rem;
+}
+
+.number {
+  left: 1.25rem;
+}
+
+.ribbon-top-right {
+  right: -15px;
+}
+.ribbon-top-right span {
+  left: 30px;
+  transform: rotate(45deg);
+}
+
+.dashboard-box .freelancer-overview .freelancer-name {
+  text-align: left;
+}
+
+.comment-by .status {
+  right: 0;
+}
+
+.comments ul li ul li:before {
+  left: -25px;
+}
+
+.avatar {
+  float: left;
+  left: 0px;
+}
+
+.checkbox label span.checkbox-icon {
+  left: 0;
+}
+
+.message-quote .close {
+  right: 10px;
+}
+
+ul.postJobStep li a i:last-child {
+  float: right;
+}
+
+.attachment-box i.icon-feather-download {
+  right: 1rem;
+}
+
+.footer-links h4 a {
+  float: right;
+}
+
+.dashboard-box .btn.ico.removeaccount {
+  right: -10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .banner-search:before {
+    transform: rotate(-65deg) translate(20%, -30%);
+  }
+}
+@media all and (max-width: 175px) {
+  html.mm-opening .mm-menu.mm-opened ~ .mm-slideout {
+    -webkit-transform: translate(140px, 0);
+    -ms-transform: translate(140px, 0);
+    transform: translate(140px, 0);
+    -webkit-transform: translate3d(140px, 0, 0);
+    transform: translate3d(140px, 0, 0);
+  }
+}
+@media all and (min-width: 550px) {
+  html.mm-opening .mm-menu.mm-opened ~ .mm-slideout {
+    -webkit-transform: translate(440px, 0);
+    -ms-transform: translate(440px, 0);
+    transform: translate(440px, 0);
+    -webkit-transform: translate3d(440px, 0, 0);
+    transform: translate3d(440px, 0, 0);
+  }
+}
+@media (max-width: 991px) {
+  .fullwidth .header-widget:last-of-type, .header-widget:last-of-type {
+    padding-inline-end: 15px;
+    float: left;
+  }
+  .mmenu-trigger {
+    margin: 0 -5px 0 0;
+    float: right;
+  }
+  #header .end-side {
+    right: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .user-menu .header-notifications-dropdown, .header-notifications-dropdown {
+    right: -10px;
+  }
+}
+@media (min-width: 767.98px) {
+  .signup:before {
+    background-color: #2C597A;
+  }
+  .signup:after {
+    background-color: #29b6f6;
+  }
+}
+@media (max-width: 991.98px) {
+  .message-bubble.me .message-text {
+    margin: 0;
+  }
+}
+/* END CSS *//*# sourceMappingURL=lang_en.css.map */

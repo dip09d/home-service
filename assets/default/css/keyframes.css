@@ -1,0 +1,178 @@
+@charset "utf-8";
+
+@keyframes blink {
+  50% {
+  opacity: 1;
+ }
+ }
+ 
+  @keyframes tooltip-bounce {
+  0%, 20%, 50%, 80%, 100% {
+ transform: translateX(0);
+ }
+  40% {
+ transform: translateX(14px);
+ }
+  60% {
+ transform: translateX(7px);
+ }
+ }
+ 
+  @keyframes bookmarked-shadow {
+  0% {
+ box-shadow: 0 0 0 0 rgba(254, 179, 66, 0.8);
+ }
+  100% {
+ box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+ }
+ }
+ 
+  @keyframes bookmark-icon {
+  0% {
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+ }
+  50% {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+ }
+  100% {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+ }
+ }
+ 
+  @keyframes ripple {
+  0% {
+  -webkit-transform: scale(4);
+  transform: scale(4);
+ }
+  100% {
+  opacity: 0;
+  -webkit-transform: scale(40);
+  transform: scale(40);
+ }
+ }
+ 
+  @keyframes KeywordIn {
+  0% {
+  opacity: 0;
+  transform: scale(0.9);
+ }
+  100% {
+  opacity: 1;
+  transform: scale(1);
+ }
+ }
+ 
+  @keyframes KeywordOut {
+  0% {
+  opacity: 1;
+ }
+  50% {
+  opacity: 0;
+ }
+  100% {
+  opacity: 0;
+  margin-top: -35px;
+ }
+ }
+ 
+  @keyframes switch-shadow {
+  0% {
+ box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
+ }
+  100% {
+ box-shadow: 0 0 0px 10px rgba(0, 0, 0, 0);
+ }
+ }
+  @keyframes switch-shadow-color {
+  0% {
+ box-shadow: 0 0 0 0 rgba(102, 103, 107, 0.6);
+ }
+  100% {
+ box-shadow: 0 0 0px 10px rgba(0, 0, 0, 0);
+ }
+ }
+ 
+  @keyframes radius-shadow {
+  0% {
+ box-shadow: 0 0 0 0 rgba(102, 103, 107, 0.4);
+ }
+  100% {
+ box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+ }
+ }
+ 
+  @keyframes bicokAnim {
+  0%, 100% {
+  box-shadow: 0 0 0 15px rgba(102, 103, 107, 0.07);
+ }
+  50% {
+  box-shadow: 0 0 0 28px rgba(102, 103, 107, 0.12);
+ }
+ }
+ 
+  @keyframes checkAnim {
+   0%, 100% {
+     box-shadow: 0 0 0 5px rgba(102, 103, 107, 0.15);
+   }
+   50% {
+   box-shadow: 0 0 0 8px rgba(102, 103, 107, 0.15);
+   }
+ }
+ 
+ @keyframes typeCheck {
+  0% {
+ opacity: 0;
+ transform: translateY(10px);
+ }
+  50% {
+ opacity: 1;
+ transform: translateY(0px);
+ }
+  100% {
+ opacity: 0;
+ transform: translateY(-10px);
+ }
+ }
+  @keyframes typeBG {
+  0% {
+ opacity: 0;
+ }
+  50% {
+ opacity: 1;
+ }
+  100% {
+ opacity: 0;
+ }
+ }
+ 
+ @keyframes infoBoxAnimation {
+  from {
+ opacity: 0;
+ transform: translateY(-10px);
+ }
+ to {
+   opacity: 1;
+   transform: translateY(0px);
+ }
+ }
+ 
+  @keyframes clusterAnimation {
+  0%, 100% {
+  box-shadow: 0 0 0 6px rgba(102, 103, 107, 0.15);
+ }
+  50% {
+  box-shadow: 0 0 0 10px rgba(102, 103, 107, 0.15);
+ }
+ }
+ 
+  @keyframes markerAnimation {
+  0%, 100% {
+  box-shadow: 0 0 0 6px rgba(102, 103, 107, 0.15);
+ }
+  50% {
+  box-shadow: 0 0 0 8px rgba(102, 103, 107, 0.15);
+ }
+ }

@@ -1,0 +1,500 @@
+@charset "utf-8";
+
+/* CSS Document */
+:root {
+    --siteColor: #2BAAB1;
+    --webColor: #333;
+    --siteHoverColor: #22888E;
+    --webHoverColor: #222;
+    --rgbSite: 43, 170, 177;
+    /*--rgbWeb: 0, 0, 0;*/
+}
+
+.numbered.color ol>li::before {
+    border: 1px solid var(--siteColor);
+    color: var(--siteColor);
+}
+
+.numbered.color.filled ol>li::before {
+    border: 1px solid var(--siteColor);
+    background-color: var(--siteColor);
+}
+
+.radio input[type="radio"]:checked+label .radio-label {
+    background-color: var(--siteColor);
+    border-color: var(--siteColor);
+}
+
+.checkbox input:checked+label span.checkbox-icon {
+    background-color: var(--siteColor);
+    border-color: var(--siteColor);
+}
+
+.slider-handle {
+    border: 2px solid var(--siteColor);
+}
+
+.infoBox-close:hover {
+    color: #fff;
+    background-color: var(--siteColor);
+}
+
+.message-bubble.me .message-text {
+    background-color: rgba(var(--rgbSite), 10%);
+}
+
+.message-bubble .message-text.message-deleted {
+    background-color: rgb(220 53 69 / 0.1);
+}
+
+a,
+.header-widget .log-in-button:hover i,
+.notification-text span.color,
+.header-notifications-content .notification-text span.color,
+ul.user-menu-small-nav li a:hover,
+ul.user-menu-small-nav li a:hover i,
+#navigation ul li:hover a:after,
+#navigation ul li a.current,
+#navigation ul li a.current:after,
+#navigation ul li:hover a,
+#breadcrumbs ul li a:hover,
+#breadcrumbs.white ul li a:hover,
+.single-page-header .header-details li a:hover,
+.blog-post-content h3 a:hover,
+#posts-nav li a:hover,
+.freelancer-detail-item a:hover,
+.list-4 li:before,
+.list-3 li:before,
+.list-2 li:before,
+.list-1 li:before,
+.share-buttons-content span strong,
+.keyword,
+.banner-headline strong.color,
+.category-box-icon,
+/*.recommended .pricing-plan-label,
+ .recommended .pricing-plan-label strong,*/
+.boxed-widget.summary li.total-costs span,
+.testimonial-box:before,
+.single-counter h3,
+.popup-tabs-nav li.active a,
+.dialog-with-tabs .forgot-password:hover,
+.dropdown-menu>li>a:hover,
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover,
+.bootstrap-select .dropdown-menu li.selected a span.check-mark:before,
+.bootstrap-select .dropdown-menu li.selected:hover a span.check-mark:before,
+.boxed-list-headline h3 i,
+.boxed-list-item .item-details .detail-item a:hover,
+.job-overview .job-overview-inner ul li i,
+.dashboard-nav ul:before,
+/*.dashboard-nav ul li.active-submenu a i,*/
+.dashboard-nav ul li.active a i,
+.dashboard-nav ul li:hover a i,
+/*.dashboard-nav ul li.active-submenu a,*/
+.dashboard-nav ul li:hover a,
+.dashboard-nav ul li.active a,
+/*.dashboard-nav ul li.active-submenu a:after,*/
+.dashboard-nav ul li.active a:after,
+.dashboard-nav ul li:hover a:after,
+.help-icon,
+.slick-prev:hover,
+.slick-next:hover,
+.header-widget .log-in-button:hover,
+.header-widget .log-in-button:hover i,
+.freelancer-name h4 a:hover,
+.job-listing h4>a:hover,
+.job-listing h3>a:hover,
+.messages-headline h4>a:hover,
+.messages-headline p>a:hover {
+    color: var(--siteColor);
+}
+
+.header-notifications-trigger span,
+a.header-notifications-button,
+#navigation ul ul.dropdown-nav ul.dropdown-nav li:hover a:after,
+#navigation ul ul.dropdown-nav li:hover a:after,
+.mm-menu em.mm-counter,
+.language-switcher.bootstrap-select.btn-group.open button,
+.language-switcher.bootstrap-select.btn-group button:hover,
+.newsletter button,
+.pagination ul li a.current-page,
+a.blog-post-info:hover,
+#posts-nav li a:hover span,
+.comment-by a.reply:hover,
+.contact-address-headline:after,
+.enable-filters-button span,
+.enable-filters-button i,
+.job-listing.with-apply-button:hover .list-apply-button,
+.letters-list a.current,
+span.button,
+button.button,
+input[type="button"],
+input[type="submit"],
+a.button,
+.list-1 li:before,
+mark.color,
+table.basic-table th,
+.copy-url .copy-url-button,
+.keyword-input-container .keyword-input-button,
+.tags-container input[type="checkbox"]:checked+label,
+input:checked+.switch-button,
+.radio input[type="radio"]+label .radio-label:after,
+.uploadButton .uploadButton-button:hover,
+.pricing-plan .button:hover,
+.pricing-plan.recommended .button,
+.pricing-plan .recommended-badge,
+.payment-tab-trigger>input:checked~label::after,
+.breathing-icon,
+.icon-box-check,
+.testimonial-author span,
+.qtyInc:hover,
+.qtyDec:hover,
+#sign-in-dialog .mfp-close:hover,
+#small-dialog-1 .mfp-close:hover,
+#small-dialog-2 .mfp-close:hover,
+#small-dialog-3 .mfp-close:hover,
+#small-dialog-4 .mfp-close:hover,
+#small-dialog .mfp-close:hover,
+.slider-selection,
+.cluster-visible,
+.marker-container,
+.custom-zoom-in:hover,
+.custom-zoom-out:hover,
+#geoLocation:hover,
+#streetView:hover,
+#scrollEnabling:hover,
+#scrollEnabling.enabled,
+a.apply-now-button,
+a.attachment-box:hover,
+.freelancer-indicators .indicator-bar span,
+.dashboard-nav ul li span.nav-tag,
+.dashboard-box .button.dark:not(.ico):hover,
+.messages-inbox ul li:before,
+.message-by h5 i {
+    background-color: var(--siteColor);
+}
+
+.transparent-header #navigation>ul li:hover ul li:hover a:after,
+.transparent-header #navigation>ul li:hover a:after,
+.transparent-header #navigation>ul li a.current:after,
+.compact-list-layout .job-listing:before,
+.tasks-list-container.compact-list .task-listing:before,
+.compact-list.freelancers-list-layout .freelancer:before,
+.tabs-header,
+.intro-search-field .field-title,
+.category-box:hover,
+.photo-box.small .photo-box-content span,
+.bootstrap-select.btn-group .bs-actionsbox div button:hover {
+    background: var(--siteColor);
+}
+
+.uploadButton .uploadButton-button,
+.pricing-plan .button {
+    color: var(--siteColor);
+    border: 1px solid var(--siteColor);
+}
+
+.payment-tab-trigger>input:checked~label::before,
+/*.dashboard-nav ul li.active-submenu,*/
+.dashboard-nav ul li.active,
+.dashboard-nav ul li:hover {
+    border-color: var(--siteColor);
+}
+
+#navigation ul ul.dropdown-nav ul.dropdown-nav li:hover a:after,
+#navigation ul ul.dropdown-nav li:hover a:after,
+#navigation ul li:hover a:after {
+    background: rgba(var(--rgbSite), 10%);
+}
+
+#navigation ul li a.current:after {
+    background: rgba(var(--rgbSite), 10%);
+}
+
+/*.pagination ul li a.current-page {
+     box-shadow: 0 2px 8px rgba(var(--rgbSite), 25%); 
+}*/
+.sidebar-search-button-container button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 10%);
+}
+
+.sidebar-search-button-container button:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 25%);
+}
+
+.job-listing.with-apply-button:hover .list-apply-button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.task-listing-bid-inner .button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.task-listing-bid-inner .button:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 25%);
+}
+
+.freelancers-grid-layout .freelancer-details a.button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 10%);
+}
+
+.freelancer-details a.button:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 20%);
+}
+
+.freelancers-list-layout .freelancer-details a.button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.freelancers-list-layout .freelancer-details a.button:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 25%);
+}
+
+.letters-list a.current {
+    box-shadow: 0 2px 8px rgba(var(--rgbSite), 25%);
+}
+
+span.button,
+button.button,
+input[type="button"],
+input[type="submit"],
+a.button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.move-on-hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 10%);
+}
+
+.move-on-hover:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 20%);
+}
+
+.keyword {
+    background-color: rgba(var(--rgbSite), 10%);
+}
+
+@keyframes switch-shadow-color {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--rgbSite), 50%);
+    }
+
+    100% {
+        box-shadow: 0 0 0px 10px rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes radius-shadow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--rgbSite), 40%);
+    }
+
+    100% {
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+}
+
+.uploadButton .uploadButton-button {
+    box-shadow: 0 3px 10px rgba(var(--rgbSite), 10%);
+}
+
+.uploadButton .uploadButton-button:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.category-box:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 20%);
+}
+
+.photo-box:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 25%);
+}
+
+.recommended .pricing-plan-label {
+    background-color: rgba(var(--rgbSite), 10%);
+}
+
+.pricing-plan .button:hover,
+.pricing-plan.recommended .button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.pricing-plan .button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 10%);
+}
+
+.pricing-plan .button:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.breathing-icon {
+    box-shadow: 0 0 0 15px rgba(var(--rgbSite), 10%);
+}
+
+@keyframes bicokAnim {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 15px rgba(var(--rgbSite), 10%);
+    }
+
+    50% {
+        box-shadow: 0 0 0 28px rgba(var(--rgbSite), 10%);
+    }
+}
+
+.icon-box-check {
+    box-shadow: 0 0 0 5px rgba(var(--rgbSite), 10%);
+}
+
+@keyframes checkAnim {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 5px rgba(var(--rgbSite), 15%);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(var(--rgbSite), 15%);
+    }
+}
+
+.testimonial-author span {
+    box-shadow: 0 2px 10px rgba(var(--rgbSite), 25%);
+}
+
+.bidding-widget .button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.bidding-widget .button:hover {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 25%);
+}
+
+.dialog-with-tabs .button {
+    box-shadow: 0 4px 12px rgba(var(--rgbSite), 15%);
+}
+
+.slider-handle:after {
+    box-shadow: 0 0 0px 6px rgba(var(--rgbSite), 10%);
+}
+
+.slider-handle:hover:after {
+    box-shadow: 0 0 0px 8px rgba(var(--rgbSite), 10%);
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover {
+    background-color: rgba(var(--rgbSite), 10%);
+}
+
+@keyframes clusterAnimation {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 6px rgba(var(--rgbSite), 15%);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(var(--rgbSite), 15%);
+    }
+}
+
+@keyframes markerAnimation {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 6px rgba(var(--rgbSite), 15%);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(var(--rgbSite), 15%);
+    }
+}
+
+a.apply-now-button {
+    box-shadow: 0 2px 8px rgba(var(--rgbSite), 15%);
+}
+
+a.apply-now-button:hover {
+    box-shadow: 0 2px 8px rgba(var(--rgbSite), 35%);
+}
+
+/*.dashboard-nav ul li.active-submenu,*/
+.dashboard-nav ul li.active,
+.dashboard-nav ul li:hover {
+    background-color: rgba(var(--rgbSite), 10%);
+}
+
+/*.dashboard-nav ul li.active-submenu a:after,*/
+.dashboard-nav ul li.active a:after
+
+/*, .dashboard-nav ul li:hover a:after*/
+    {
+    background-color: rgba(var(--rgbSite), 10%);
+}
+
+.dashboard-box-list .button {
+    box-shadow: 0 3px 8px rgba(var(--rgbSite), 15%);
+}
+
+.dashboard-box .button.dark:not(.ico):hover {
+    box-shadow: 0 3px 8px rgba(var(--rgbSite), 15%);
+}
+
+#navigation ul ul.dropdown-nav ul.dropdown-nav li:hover a:after,
+#navigation ul ul.dropdown-nav li:hover a:after {
+    background-color: var(--siteColor);
+}
+
+/* custom color */
+.btn-site {
+    background-color: var(--siteColor);
+    color: #fff
+}
+
+.btn-site:hover,
+.btn-site:focus {
+    background-color: var(--siteHoverColor);
+    color: #fff
+}
+
+.btn-site:focus {
+    box-shadow: 0 0 0 0.2rem rgba(var(--rgbSite), 25%);
+}
+
+.btn-web {
+    background-color: var(--webColor);
+    color: #fff
+}
+
+.btn-web:hover,
+.btn-web:focus {
+    background-color: var(--webHoverColor);
+    color: #fff
+}
+
+.btn-outline-site {
+    border-color: var(--siteColor);
+    color: var(--siteColor);
+}
+
+.btn-outline-site:hover,
+.btn-outline-site:focus {
+    border-color: var(--siteColor);
+    background-color: var(--siteColor);
+    color: #fff;
+}
+
+.text-site,
+.task-listing h3.task-listing-title a:hover {
+    color: var(--siteColor);
+}
+
+.bg-site {
+    background-color: var(--siteColor);
+    color: #fff
+}
+
+/* END CSS */

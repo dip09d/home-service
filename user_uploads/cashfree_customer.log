@@ -1,0 +1,2 @@
+"{\n  \"type\": \"PAYMENT_SUCCESS_WEBHOOK\",\n  \"data\": {\n    \"payment\": {\n      \"payment_amount\": 500,\n      \"payment_status\": \"SUCCESS\"\n    },\n    \"order\": {\n      \"order_id\": \"order_xyz\"\n    }\n  }\n}"
+"{\n  \"type\": \"PAYMENT_SUCCESS_WEBHOOK\",\n  \"data\": {\n    \"payment\": {\n      \"payment_amount\": 500,\n      \"payment_status\": \"SUCCESS\"\n    },\n    \"order\": {\n      \"order_id\": \"order_xyz\"\n    }\n  }\n}"

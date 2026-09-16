@@ -1,0 +1,11 @@
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Send would-be 404 requests to Craft
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond $1 !^/(index\.php|assets/|humans\.txt)
+    RewriteRule ^(.*)$ ./index.php?$1 [L,QSA]
+	# RewriteRule ^(.*)$ http://www.google.com
+</IfModule>

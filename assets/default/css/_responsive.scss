@@ -1,0 +1,210 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media only screen and (min-width: 0) {
+html {
+    font-size: 14px;
+}
+}
+@media (min-width: 576px){
+	.footer-links h4 > a {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 767.98px) {
+	ul.totalList > li {
+		flex: 0 0 25%;
+	}
+	ul.totalList > li:nth-child(4n) {
+		border-inline-end:none;
+	}
+	.pricing-group > .btn {
+		flex: 0 0 calc(33.3333% - 1.25rem);
+	}
+	.attachmentFile {
+		border-inline-start: 1px solid #dee2e6;
+		width: 200px;
+	}
+	.attachmentFile ul> li>a h5{
+		max-width: 180px;
+	}
+	html {
+		font-size: 15px;
+	}
+	.pricing-group > .btn {
+		flex: 0 0 calc(25% - 1.25rem);
+	}
+	.attachScrollbar {
+		height: 450px
+	}
+	.message-content-inner {
+		height: 400px;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.fun-facts-container{
+        .fun-fact {
+            flex: 1 1 calc(25% - 30px);
+        }
+    }
+	.language-switcher.bootstrap-select.btn-group button {
+		border-color: transparent;
+	}
+	.dashboard-sidebar-inner{
+		height:750px !important;
+	}
+	.freelancer-actions {
+		margin-inline-start: 98px;
+		min-width: 480px;
+	}
+	/*.dashboard-content-inner {
+		min-height: 750px;
+	}*/
+	.process .border-right {
+		border-inline-end: 1px solid #e1e1e1
+	}
+	.process .border-left {
+		border-inline-start: 1px solid #e1e1e1
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	html {
+		font-size: 16px;
+	}
+	.xl-20 {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 20%;
+		flex: 0 0 20%;
+		max-width: 20%;
+	}
+	ul.top-list{
+		columns: 4;
+	}
+	#talent_list .job-listing h4.job-listing-title {
+		max-width: 330px;
+	}
+	
+}
+
+@media only screen and (max-width: 991.98px) {
+	.tippy-popper {
+		display:none;
+	}
+	.milestone_row_parent{
+		border-bottom: 1px dashed #ccc;
+		margin-bottom: 1.5rem;
+		padding-bottom: 0.5rem;
+	}
+	.milestone_row_parent:last-child{
+		border-bottom:none;
+		margin-bottom:0;
+		padding-bottom:0;
+	}
+    .fun-facts-container{
+        .fun-fact {
+            flex: 1 1 calc(50% - 30px);
+        }
+    }
+	ul.dashboard-box-list.if-button > li.application-list{
+		padding-inline-end:1.25rem;
+	}
+	ul.dashboard-box-list.if-button > li.application-list .freelancer-overview{
+		padding-inline-end:64px;
+	}
+}
+
+@media only screen and (max-width: 767.99px) {
+	ul.totalList > li {
+		flex: 0 0 50%;
+	}
+	ul.totalList > li:nth-child(2n) {
+		border-inline-end:none
+	}
+	/*.sidebar-container {
+		margin-top: 20px;
+	}*/
+	.search-box {
+		margin-bottom:1rem
+	}
+	.task-listing > .task-listing-body{
+		flex-direction:column;
+	}
+	.dashboard-box .job-listing .job-listing-footer.if-button{
+		padding-inline-end:40px;
+	}
+	.job-listing-footer .dashboard-status-button {
+		margin: 3px 0;
+	}
+	.nav-tabs {
+		overflow-x: auto;
+		white-space: nowrap;
+		flex-wrap: inherit;
+		min-height: 37px;
+	}
+	.attachmentFile {
+		border-top: 1px solid #dee2e6;
+	}
+	.avatar-wrapper {
+		width: 84px;
+		height: 84px;
+	}
+	.myradio .btn-group > .btn {
+		line-height: 1.25;
+		padding: 1rem;
+	}
+	.dashboard-container .dashboard-content-container .dashboard-content-inner{
+		padding: 0;
+	}
+
+}
+
+@media only screen and (max-width: 575px) {
+	.footer-links ul {
+		display: none;
+	}
+	.hide-under-sm{
+		display:none !important;
+	}
+	.myradio .btn-group {
+		flex-wrap: wrap;
+		margin-bottom:-1rem;
+		width: calc(100% + 1rem);
+	}
+	.myradio .btn-group > .btn {
+		flex: 0 0 calc(50% - 1rem);
+		max-width: calc(50% - 1rem);
+		margin-bottom: 1rem;
+	}
+	.myradio .btn-group > .btn:nth-child(3){
+		margin-inline-start:0 !important;	
+	}
+	.avatar-wrapper {
+		margin: 0 auto 1rem;
+	}
+	ul.dashboard-box-list.if-double-button > li{
+		padding-inline-end:1.25rem;
+	}
+	ul.dashboard-box-list.if-double-button > li .buttons-to-right{
+		position:inherit;
+		left: 0;
+		top: 1rem;
+		box-shadow:none;
+	}
+    .fun-facts-container{
+        width: 100%;
+        .fun-fact {
+            flex: 0 0 100%;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            max-width: 100%;
+        }
+    }
+}
+
+
+
+
+/* END CSS */

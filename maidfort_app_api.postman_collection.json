@@ -1,0 +1,2611 @@
+{
+  "info": {
+    "_postman_id": "maidfort-app-api-v1",
+    "name": "Maidfort App API",
+    "description": "All API endpoints from application/modules/app controllers (App.php, User.php, Contest.php, Findtalents.php, Project.php, Projectdetails.php, Workroom.php).\n\nBase URL variable: {{base_url}} e.g. http://yourdomain.com\n\nAuth:\n- Customer endpoints: pass ?member_id={{member_id}} in query\n- Worker endpoints:   pass ?worker_id={{worker_id}} in query\n- Both can coexist on some endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/maidfort-master"
+    },
+    {
+      "key": "member_id",
+      "value": "1"
+    },
+    {
+      "key": "worker_id",
+      "value": "1"
+    },
+    {
+      "key": "booking_id",
+      "value": "1"
+    },
+    {
+      "key": "invoice_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth & Registration",
+      "item": [
+        {
+          "name": "Customer Login - Step 1 (Send OTP)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "step",
+                  "value": "1"
+                },
+                {
+                  "key": "mobile",
+                  "value": "9876543210"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Customer Login - Step 2 (Verify OTP)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "step",
+                  "value": "2"
+                },
+                {
+                  "key": "mobile",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "otp",
+                  "value": "1234"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Worker Login - Step 1 (Send OTP)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "step",
+                  "value": "1"
+                },
+                {
+                  "key": "mobile",
+                  "value": "9876543210"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/login_serviceProvider",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "login_serviceProvider"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Worker Login - Step 2 (Verify OTP)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "step",
+                  "value": "2"
+                },
+                {
+                  "key": "mobile",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "otp",
+                  "value": "1234"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/login_serviceProvider",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "login_serviceProvider"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send Signup OTP (Customer)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "number",
+                  "value": "9876543210"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/sendSignupOtp",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "sendSignupOtp"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify Signup OTP (Customer)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "first_name",
+                  "value": "John"
+                },
+                {
+                  "key": "last_name",
+                  "value": "Doe"
+                },
+                {
+                  "key": "number",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "otp",
+                  "value": "1234"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/verify_otp",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "verify_otp"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Worker Signup - Step 1 (Personal Info)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "step",
+                  "value": "1"
+                },
+                {
+                  "key": "name",
+                  "value": "Ravi Kumar"
+                },
+                {
+                  "key": "gender",
+                  "value": "male"
+                },
+                {
+                  "key": "dob",
+                  "value": "1995-01-15"
+                },
+                {
+                  "key": "religion",
+                  "value": "1"
+                },
+                {
+                  "key": "phone",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "alt_phone",
+                  "value": ""
+                },
+                {
+                  "key": "email",
+                  "value": "ravi@example.com"
+                },
+                {
+                  "key": "whatsapp",
+                  "value": "9876543210"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/signupPro",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "signupPro"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Worker Signup - Step 2 (Address & Services)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "step",
+                  "value": "2"
+                },
+                {
+                  "key": "name",
+                  "value": "Ravi Kumar"
+                },
+                {
+                  "key": "gender",
+                  "value": "male"
+                },
+                {
+                  "key": "dob",
+                  "value": "1995-01-15"
+                },
+                {
+                  "key": "religion",
+                  "value": "1"
+                },
+                {
+                  "key": "phone",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "worker_address",
+                  "value": "12 MG Road"
+                },
+                {
+                  "key": "worker_city",
+                  "value": "Kolkata"
+                },
+                {
+                  "key": "worker_state",
+                  "value": "West Bengal"
+                },
+                {
+                  "key": "worker_pincode",
+                  "value": "700001"
+                },
+                {
+                  "key": "worker_landmark",
+                  "value": "Near Park"
+                },
+                {
+                  "key": "lat",
+                  "value": "22.5726"
+                },
+                {
+                  "key": "lng",
+                  "value": "88.3639"
+                },
+                {
+                  "key": "service_id[]",
+                  "value": "1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/signupPro",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "signupPro"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Signup Form Data (Religion, States, Services)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/signForm",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "signForm"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Religion List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/religion",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "religion"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Home & Services",
+      "item": [
+        {
+          "name": "Home Screen",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/home?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "home"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Service Details",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "category_subchild_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/serviceDetails",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "serviceDetails"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Address",
+      "item": [
+        {
+          "name": "Save Address",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Home"
+                },
+                {
+                  "key": "address",
+                  "value": "12 MG Road"
+                },
+                {
+                  "key": "latitude",
+                  "value": "22.5726"
+                },
+                {
+                  "key": "longitude",
+                  "value": "88.3639"
+                },
+                {
+                  "key": "location_type",
+                  "value": "home"
+                },
+                {
+                  "key": "city",
+                  "value": "Kolkata"
+                },
+                {
+                  "key": "state",
+                  "value": "West Bengal"
+                },
+                {
+                  "key": "pincode",
+                  "value": "700001"
+                },
+                {
+                  "key": "house_number",
+                  "value": "Flat 2B"
+                },
+                {
+                  "key": "landmark",
+                  "value": "Near Park"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/saveAddress?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "saveAddress"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/address?member_id={{member_id}}&address_id=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "address"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "address_id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List All Addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/list_address?member_id={{member_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "list_address"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Address",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "member_address_id",
+                  "value": "1"
+                },
+                {
+                  "key": "name",
+                  "value": "Office"
+                },
+                {
+                  "key": "address",
+                  "value": "45 Park Street"
+                },
+                {
+                  "key": "latitude",
+                  "value": "22.5500"
+                },
+                {
+                  "key": "longitude",
+                  "value": "88.3500"
+                },
+                {
+                  "key": "location_type",
+                  "value": "work"
+                },
+                {
+                  "key": "city",
+                  "value": "Kolkata"
+                },
+                {
+                  "key": "state",
+                  "value": "West Bengal"
+                },
+                {
+                  "key": "pincode",
+                  "value": "700016"
+                },
+                {
+                  "key": "landmark",
+                  "value": "Near Metro"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/update_address?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "update_address"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Remove / Set Default Address",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "member_address_id",
+                  "value": "1"
+                },
+                {
+                  "key": "status",
+                  "value": "0",
+                  "description": "0=remove, 2=default"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/remove_setDefault_address?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "remove_setDefault_address"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Booking - Customer",
+      "item": [
+        {
+          "name": "Book a Service",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "cat_id",
+                  "value": "1"
+                },
+                {
+                  "key": "sub_cat_id",
+                  "value": "1"
+                },
+                {
+                  "key": "booking_date",
+                  "value": "2026-06-01"
+                },
+                {
+                  "key": "booking_time",
+                  "value": "10:00:00"
+                },
+                {
+                  "key": "duration_hours",
+                  "value": "2"
+                },
+                {
+                  "key": "address_id",
+                  "value": "1"
+                },
+                {
+                  "key": "pref_gender",
+                  "value": "any"
+                },
+                {
+                  "key": "special_instructions",
+                  "value": "Please bring your own supplies."
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/bookingService?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "bookingService"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Booking Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/booking_details?member_id={{member_id}}&booking_id={{booking_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "booking_details"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Customer Booking List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/booking_member?member_id={{member_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "booking_member"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Reschedule Booking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "booking_date",
+                  "value": "2026-06-05"
+                },
+                {
+                  "key": "booking_time",
+                  "value": "11:00:00"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/reschedulebooking?member_id={{member_id}}&booking_id={{booking_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "reschedulebooking"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cancel Booking (Customer)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/cancel_booking?member_id={{member_id}}&booking_id={{booking_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "cancel_booking"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Booking - Worker",
+      "item": [
+        {
+          "name": "Accept Job",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/accept_job?worker_id={{worker_id}}&booking_id={{booking_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "accept_job"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                },
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Worker Booking List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/booking_worker?worker_id={{worker_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "booking_worker"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Start Booking (Current Accepted Job)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/start_booking_worker?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "start_booking_worker"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify Start OTP",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "otp",
+                  "value": "1234"
+                },
+                {
+                  "key": "order_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/verify_start_otp?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "verify_start_otp"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify End OTP (Creates Invoice)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "otp",
+                  "value": "5678"
+                },
+                {
+                  "key": "order_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/verify_end_otp?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "verify_end_otp"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Check Invoice Calculation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/check_invoice?worker_id={{worker_id}}&order_id={{booking_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "check_invoice"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                },
+                {
+                  "key": "order_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark as Paid (Cash / Worker)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "order_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/mark_as_paid?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "mark_as_paid"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cancel Booking (Worker / Provider)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/provider_cancel_booking?worker_id={{worker_id}}&booking_id={{booking_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "provider_cancel_booking"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                },
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Upload Worker Photo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "logo_data",
+                  "value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAE...",
+                  "description": "Base64 encoded image"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/upload_attach?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "upload_attach"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Get Customer Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/profile?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "profile"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Customer Profile",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "John Doe"
+                },
+                {
+                  "key": "number",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "pre_number",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "email",
+                  "value": "john@example.com"
+                },
+                {
+                  "key": "wa_num",
+                  "value": "9876543210"
+                },
+                {
+                  "key": "dob",
+                  "value": "1990-05-20"
+                },
+                {
+                  "key": "gender",
+                  "value": "male"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/profile_update?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "profile_update"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Worker Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/worker_profile?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "worker_profile"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Set Worker Availability",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "is_available",
+                  "value": "1",
+                  "description": "1=available, 0=unavailable"
+                },
+                {
+                  "key": "lat",
+                  "value": "22.5726"
+                },
+                {
+                  "key": "lng",
+                  "value": "88.3639"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/set_availability?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "set_availability"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Profile Verification Docs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/profile_verification?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "profile_verification"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Upload Verification Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "doc_type_id",
+                  "value": "1"
+                },
+                {
+                  "key": "attachments",
+                  "value": "[{\"filename\":\"doc.png\"}]"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/send_document?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "send_document"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Verification Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/delete_document?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "delete_document"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer Payment (Cashfree)",
+      "item": [
+        {
+          "name": "Initiate Customer Payment (Cashfree)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/payment_cashfree_customer?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "payment_cashfree_customer"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            },
+            "description": "Creates a Cashfree order for the unpaid invoice linked to booking_id. Returns Cashfree payment_session_id. On payment success Cashfree calls notify_cashfree_customer webhook automatically."
+          }
+        },
+        {
+          "name": "Cashfree Webhook - Customer Payment Notify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"PAYMENT_SUCCESS_WEBHOOK\",\n  \"data\": {\n    \"payment\": {\n      \"payment_amount\": 500,\n      \"payment_status\": \"SUCCESS\"\n    },\n    \"order\": {\n      \"order_id\": \"order_xyz\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/notify_cashfree_customer/CONTENT_KEY_HERE",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "notify_cashfree_customer",
+                "CONTENT_KEY_HERE"
+              ]
+            },
+            "description": "Called automatically by Cashfree after payment. Marks invoice as paid and records customer direct payment in online_transaction_data."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Worker Wallet",
+      "item": [
+        {
+          "name": "Initiate Worker Add Fund (Cashfree)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "amount",
+                  "value": "500"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/payment_cashfree?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "payment_cashfree"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cashfree Webhook - Worker Add Fund Notify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"PAYMENT_SUCCESS_WEBHOOK\",\n  \"data\": {\n    \"payment\": {\n      \"payment_amount\": 500,\n      \"payment_status\": \"SUCCESS\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/notify_cashfree/CONTENT_KEY_HERE",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "notify_cashfree",
+                "CONTENT_KEY_HERE"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Worker Transaction History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/transaction_history_worker?worker_id={{worker_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "transaction_history_worker"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Worker Wallet Balance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/worker_balance?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "worker_balance"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer Wallet & Finance",
+      "item": [
+        {
+          "name": "Transaction History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/transaction_history?member_id={{member_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "transaction_history"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Invoice List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/invoice?member_id={{member_id}}&page=1&show=all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "invoice"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "show",
+                  "value": "all",
+                  "description": "all | pending | completed | rejected"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Withdraw Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/withdraw_account?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "withdraw_account"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Save Withdraw Account (Bank)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "payment_method",
+                  "value": "bank"
+                },
+                {
+                  "key": "bank_name",
+                  "value": "SBI"
+                },
+                {
+                  "key": "bank_ac_number",
+                  "value": "123456789012"
+                },
+                {
+                  "key": "bank_swift_code",
+                  "value": "SBIN0001234"
+                },
+                {
+                  "key": "bank_iban",
+                  "value": "IN00SBIN0001234123456789012"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/save_withdraw_account?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "save_withdraw_account"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Save Withdraw Account (PayPal)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "payment_method",
+                  "value": "paypal"
+                },
+                {
+                  "key": "paypal_address",
+                  "value": "user@paypal.com"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/save_withdraw_account?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "save_withdraw_account"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Remove Withdraw Account",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "account_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/remove_withdraw_account?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "remove_withdraw_account"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Process Withdraw Fund",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "amount",
+                  "value": "200"
+                },
+                {
+                  "key": "account_id",
+                  "value": "1"
+                },
+                {
+                  "key": "payment_type",
+                  "value": "bank"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/process_withdraw_fund?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "process_withdraw_fund"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Unread Notification Count",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/notification_count?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "notification_count"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Notifications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/notifications?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "notifications"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Notifications Read",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "id[]",
+                  "value": "1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/update_notifications",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "update_notifications"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Notification List (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/notification?member_id={{member_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "notification"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Register Device (Push Token)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "device_type",
+                  "value": "android",
+                  "description": "android | ios"
+                },
+                {
+                  "key": "device_token",
+                  "value": "FCM_TOKEN_HERE"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/add_device?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "add_device"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Get / Create Chat Room",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/getroom?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "getroom"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Room Members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/room_member?chatroom=channel_room_1&member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "room_member"
+              ],
+              "query": [
+                {
+                  "key": "chatroom",
+                  "value": "channel_room_1"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Message List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/message_list?chatroom=channel_room_1&member_id={{member_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "message_list"
+              ],
+              "query": [
+                {
+                  "key": "chatroom",
+                  "value": "channel_room_1"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "channel_id",
+                  "value": "channel_room_1"
+                },
+                {
+                  "key": "message",
+                  "value": "Hello!"
+                },
+                {
+                  "key": "parent_id",
+                  "value": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/sendmessage?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "sendmessage"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Messages Read",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/read_message?chatroom=channel_room_1&member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "read_message"
+              ],
+              "query": [
+                {
+                  "key": "chatroom",
+                  "value": "channel_room_1"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Single Message Read (Just Read)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/user/just_read?chatroom=channel_room_1&member_id={{member_id}}&receiver_id=1&message_id=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "just_read"
+              ],
+              "query": [
+                {
+                  "key": "chatroom",
+                  "value": "channel_room_1"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "receiver_id",
+                  "value": "1"
+                },
+                {
+                  "key": "message_id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Message",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "chatroom",
+                  "value": "channel_room_1"
+                },
+                {
+                  "key": "message_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/delete_msg?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "delete_msg"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Video Call",
+      "item": [
+        {
+          "name": "Create Video Call Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/create_token_video?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "create_token_video"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "End Call",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/end_call?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "end_call"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Send Review (Customer)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                },
+                {
+                  "key": "rating",
+                  "value": "5"
+                },
+                {
+                  "key": "review",
+                  "value": "Excellent service!"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/send_review?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "send_review"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send Review (Worker)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "booking_id",
+                  "value": "{{booking_id}}"
+                },
+                {
+                  "key": "rating",
+                  "value": "4"
+                },
+                {
+                  "key": "review",
+                  "value": "Good customer."
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/user/send_review?worker_id={{worker_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "user",
+                "send_review"
+              ],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "{{worker_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Project",
+      "item": [
+        {
+          "name": "Project List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/project/list?member_id={{member_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "project",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Project Filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/project/filter?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "project",
+                "filter"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "My Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/project/myproject?member_id={{member_id}}&page=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "project",
+                "myproject"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Post Project Options",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/app/project/postproject_option?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "project",
+                "postproject_option"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Post Project",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "title",
+                  "value": "Website Redesign"
+                },
+                {
+                  "key": "budget_min",
+                  "value": "5000"
+                },
+                {
+                  "key": "budget_max",
+                  "value": "15000"
+                },
+                {
+                  "key": "description",
+                  "value": "Redesign our company website."
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/project/postproject?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "project",
+                "postproject"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Hire Freelancer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "bid_id",
+                  "value": "1"
+                },
+                {
+                  "key": "project_id",
+                  "value": "1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/project/hire?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "project",
+                "hire"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Accept / Reject Offer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "offer_id",
+                  "value": "1"
+                },
+                {
+                  "key": "action",
+                  "value": "accept",
+                  "description": "accept | reject"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/app/project/accept_reject_offer?member_id={{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "app",
+                "project",
+                "accept_reject_offer"
+              ],
+              "query": [
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

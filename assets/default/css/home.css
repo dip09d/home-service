@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+
+:root{
+	--bs-violet-rgb: 113, 44, 249;
+	--bs-accent-rgb: 255, 228, 132;
+	--bs-pink-rgb: 214, 51, 132;
+}
+.section {
+    padding: 3rem 0;
+}
+.home-banner{
+	background-color: #fff;
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 45%;
+	color: #000;
+	position: relative;
+	overflow: hidden;
+	height: calc(90vh - 80px);
+}
+
+.glow{
+	position: absolute;
+	left: 1rem;
+	top: 1rem;
+}
+.floating-rate .rounded-circle{
+	padding: 5px 9px;
+}
+
+@media (max-width: 991.98px){
+	.home-banner{
+		background: none;
+		background-size: 150%;
+        background-repeat: no-repeat;
+		background-position: bottom center;
+		height: 100%;
+		padding: 3rem 0;
+		position: relative;
+	}
+	.home-banner::before{
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		background-image: linear-gradient( rgb(255 255 255 / 75%) 0%, rgb(255 255 255 / 90%) 100%);
+		height: 100%;
+		width: 100%;
+	}
+	.store-buttons .store-btn > img{
+		height: 46px;
+		width: 154px;
+	}
+}
+
+/* END CSS */

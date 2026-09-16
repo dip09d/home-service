@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media only screen and (min-width: 601px) {
+.navbar-fixed, nav {
+	height:64px
+}
+.sec {
+	padding:50px 0
+}
+.searchBox .btn, .searchBox .browser-default {
+	height:60px
+}
+.profile { 
+	text-align:center
+}
+.profileLeft .myscrollbar  {
+	height:410px
+}
+.filter .myscrollbar  {
+	height:560px
+}
+
+}
+
+@media only screen and (min-width: 993px) {
+.container {
+	padding: 0 15px;
+    width: 100%;
+}
+#ninja-slider ul {
+	height:300px !important
+}
+.carousel.carousel-slider .carousel-fixed-item {
+	bottom:100px
+}
+}
+
+@media only screen and (min-width: 1201px) {
+	
+.leftPanel {    
+    max-width: 265px
+}
+}
+
+@media only screen and (max-width: 600px) {
+
+nav .brand-logo>img {
+	height: 36px;
+}
+.side-nav li>a.btn>i.left {
+	float:none !important
+}
+.sec {
+	padding:30px 0
+}
+.carousel {
+    height: 240px !important;
+}
+.searchBox .btn, .searchBox .browser-default {
+	height:44px
+}
+.profileLeft, .filter {
+    border:none;
+	border-right: 1px solid #e0e0e0;
+	display:none;
+	left: -600px;
+	top:56px;    
+	position:fixed;
+    z-index: 9;
+    width: 100%;
+	height:100%
+}
+.profile .circle {
+	float:left;
+	margin-right:15px;
+    width: 64px;
+}
+.filter {
+	border-top: 1px solid #e0e0e0
+}
+
+.profileLeft .myscrollbar {
+    height: 325px;
+    /*border-bottom: 1px solid #e0e0e0;*/
+}
+.filter .myscrollbar {
+	 height:420px
+}
+.categorySec .box {
+	
+}
+
+}
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+
+
+}
+
+@media only screen and (max-width: 992px) {
+.container {
+	padding: 0 15px;
+    width: 100%;
+}
+.thumbFile .thumb {
+    margin-bottom: 15px
+}
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* END RESPONSIVE CSS */

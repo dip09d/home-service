@@ -1,0 +1,29 @@
+$this->notification_model->log(
+		'welcome', // template key
+		array('NAME' => 'Venkatesh bishu'), // template data
+		'dashboard', // link (without base_url)
+		1, // notification to,
+		11 // notification_from
+	);
+	
+	
+
+1. Edit profile avalibility
+3. Hire from freelancer
+
+Admin
+
+Wallet to wallet fund transfer
+Add Wallet option
+
+Checking workroom and project contract room is user /owner
+
+End contract button for hourly with checking 
+
+---------------
+
+add invoice tab on milestone page
+add fund to wallet
+update load more 
+---------
+make function for update member stats for earning ,spend, completed etc.

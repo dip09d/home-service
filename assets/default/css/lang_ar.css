@@ -1,0 +1,586 @@
+/* CSS Document */
+.input-with-icon-start i {
+  right: 12px;
+}
+
+.pull-right {
+  float: left !important;
+}
+
+#logo {
+  float: right;
+}
+
+#header .end-side {
+  float: right;
+}
+#header .end-side {
+  float: left;
+}
+
+#navigation {
+  float: right;
+}
+#navigation ul li {
+  float: right;
+}
+
+.intro-banner-search-form .input-with-icon i {
+  left: auto;
+  right: 12px;
+}
+
+.buttons-to-end {
+  left: 1.25rem;
+}
+
+.dashboard-box-list .button.to-right {
+  left: 1.25rem;
+}
+.dashboard-box-list .buttons-to-end.always-visible .btn {
+  margin: 0;
+  margin-inline-end: 3px;
+}
+
+.photo-box-portfolio-content {
+  right: 20px;
+}
+
+.photo-box-content {
+  right: 20px;
+}
+
+.input-with-icon-start i {
+  right: 12px;
+}
+
+.simplebar-track {
+  left: 0;
+}
+
+.simplebar-scrollbar {
+  left: 6px;
+}
+
+.header-widget {
+  float: right;
+}
+.header-widget:last-of-type {
+  float: left;
+}
+
+.list-3 li:before {
+  right: 0;
+  content: "\e910";
+}
+
+.list-2 li:before {
+  right: 0;
+}
+
+.list-1 li:before {
+  right: 0;
+}
+
+.header-notifications-trigger span {
+  left: -7px;
+}
+
+.dashboard-nav ul li a:after {
+  left: 1.25rem;
+}
+
+.header-notifications-dropdown {
+  left: -15px;
+}
+.header-notifications-dropdown:before {
+  left: 43px;
+}
+
+.searchbox .input-group:before {
+  right: 18px;
+}
+
+.tokenize > .tokens-container > .token {
+  margin-inline-end: 5px;
+}
+.tokenize > .tokens-container > .placeholder {
+  margin-inline-end: 5px;
+}
+.tokenize > .tokens-container > .token-search {
+  margin-inline-end: 5px;
+}
+
+.bootstrap-select.btn-group button {
+  text-align: right;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+  float: right;
+}
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+  left: 20px;
+}
+
+.skill_search .chip {
+  margin-inline-end: 6px;
+  padding-inline-end: 1.5rem;
+}
+.skill_search .chip > a {
+  left: 0.5rem;
+}
+
+.single-page-header .header-image {
+  margin-left: 1.25rem;
+}
+
+.share-buttons-icons {
+  right: 5px;
+}
+
+.freelancers-list-layout .freelancer-details a.button {
+  float: left;
+}
+
+.mm-menu {
+  right: 0;
+}
+
+.home-banner .carousel-indicators {
+  right: auto;
+}
+
+.how-steps {
+  left: -2rem;
+}
+
+#backtotop {
+  left: 25px;
+}
+
+.btn-circle.ico {
+  left: 1rem;
+}
+
+.bootbox .modal-header .pull-left {
+  right: 21px;
+}
+.bootbox .modal-header .btn-black {
+  right: 21px;
+}
+.bootbox .modal-header .btn-danger {
+  right: 21px;
+}
+.bootbox .modal-header .pull-right {
+  left: 21px;
+}
+.bootbox .modal-header .btn-success {
+  left: 21px;
+}
+.bootbox .modal-header .btn-primary {
+  left: 21px;
+}
+
+.avatar-preview {
+  float: right;
+}
+
+.action-btn {
+  left: 15px;
+}
+
+.job-task-info > li {
+  border-inline-end: 1px solid #d0d0d0;
+}
+.job-task-info > li:last-child {
+  border-inline-end: 0;
+}
+
+#filter {
+  left: 20px;
+}
+
+.freelancer-socials span.bookmark-icon {
+  left: 0;
+}
+
+.profile .verified-badge {
+  left: 6px;
+}
+
+.activity-feed .icon-feather-check-all:after {
+  right: -10px;
+}
+
+.edit-message {
+  left: 10px;
+}
+
+em.mm-counter {
+  left: 45px;
+}
+
+em.mm-counter + a.mm-next + a {
+  margin-inline-end: 90px;
+}
+
+em.mm-counter + a.mm-next + span {
+  margin-inline-end: 90px;
+}
+
+em.mm-counter + a.mm-fullsubopen {
+  padding-inline-start: 0;
+}
+
+em.mm-counter + a.mm-fullsubopen + a {
+  padding-inline-end: 90px;
+}
+
+em.mm-counter + a.mm-fullsubopen + span {
+  padding-inline-end: 90px;
+}
+
+.mm-listview em.mm-counter + .mm-next.mm-fullsubopen + a {
+  padding-inline-end: 90px;
+}
+.mm-listview em.mm-counter + .mm-next.mm-fullsubopen + span {
+  padding-inline-end: 90px;
+}
+
+.hamburger {
+  right: 5px;
+}
+
+.mm-prev:before {
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  transform: rotate(135deg);
+  right: 23px;
+  left: auto;
+}
+
+.mm-next:after {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  left: 23px;
+  right: auto;
+}
+
+.mm-navbar .mm-btn:first-child {
+  right: 0;
+}
+.mm-navbar .mm-btn:last-child {
+  text-align: left;
+  left: 0;
+}
+
+ol.counter-list li:after {
+  right: -2.5em;
+  text-align: left;
+}
+
+.featuredimg {
+  left: -9px;
+}
+
+.block a.edit {
+  float: left;
+}
+.block a.icon-round {
+  float: left;
+}
+
+#slide-nav .navbar-toggle {
+  float: right;
+}
+
+.magic-radio + label:before {
+  right: 0;
+}
+.magic-radio + label:after {
+  right: 5px;
+}
+
+.magic-checkbox + label:before {
+  right: 0;
+}
+.magic-checkbox + label:after {
+  right: 7px;
+}
+
+div.dataTables_paginate {
+  text-align: left;
+}
+
+.conversation_loop.me {
+  flex-direction: row-reverse;
+}
+.conversation_loop.me .starred {
+  right: -25px;
+}
+
+.conversation_loop.other .starred {
+  left: -25px;
+}
+
+.setting-circle {
+  left: 5px;
+}
+
+.menu_hide {
+  left: 5px;
+}
+
+.quicknav {
+  left: -280px;
+}
+
+.ecdevsec .user-sidebar-container .sidebar-close-alt {
+  left: 15px;
+}
+
+.secondary_info {
+  left: 0;
+}
+
+.secondary_info {
+  left: 0;
+}
+
+ul.tab li {
+  float: right;
+}
+
+.msg-count {
+  left: 0;
+}
+
+.messages-container-inner .message-by-headline span {
+  left: 1rem;
+}
+.messages-container-inner .messages-inbox .message-avatar {
+  right: 1rem;
+}
+
+.message-by-headline span {
+  float: left;
+}
+
+.message-action {
+  left: 1rem;
+}
+
+.input-with-icon i {
+  left: 1rem;
+}
+
+.message-bubble .message-avatar {
+  right: 0;
+}
+.message-bubble .message-text {
+  margin-inline-start: 55px;
+}
+.message-bubble .message-text:before {
+  right: -6px;
+  left: auto;
+}
+
+.message-bubble.me .message-avatar {
+  right: auto;
+  left: 0;
+}
+.message-bubble.me .message-text {
+  float: left;
+}
+.message-bubble.me .message-text:before {
+  border-inline-end: none;
+  left: -6px;
+  right: auto;
+}
+.message-bubble.me .message-text.message-deleted:before {
+  border-inline-start-color: rgba(220, 53, 69, 0.1);
+}
+.message-bubble.me .fav-star {
+  right: -5px;
+  left: auto;
+}
+.message-bubble.me .fixed-action-btn {
+  right: -30px;
+  left: auto;
+}
+.message-bubble.me .fixed-action-btn ul {
+  right: auto;
+  left: 15px;
+}
+
+.fav-star {
+  left: -5px;
+}
+
+.fixed-action-btn {
+  left: -30px;
+}
+.fixed-action-btn ul {
+  right: 15px;
+}
+
+.user-menu .header-notifications-dropdown:before {
+  left: 25px;
+}
+
+.status-icon {
+  left: 0;
+}
+
+.notification-avatar:after {
+  left: 0;
+}
+
+.user-avatar:after {
+  left: 0;
+}
+
+.job-overview .job-overview-inner ul li i {
+  right: 0;
+}
+
+.toggleUD {
+  left: 1.25rem;
+}
+
+.number {
+  right: 1.25rem;
+}
+
+.ribbon-top-right {
+  left: -15px;
+}
+.ribbon-top-right span {
+  right: 30px;
+  transform: rotate(-45deg);
+}
+
+.dashboard-box .freelancer-overview .freelancer-name {
+  text-align: right;
+}
+
+.comment-by .status {
+  left: 0;
+}
+
+.comments ul li ul li:before {
+  right: -25px;
+}
+
+.avatar {
+  float: right;
+  right: 0px;
+}
+
+.checkbox label span.checkbox-icon {
+  right: 0;
+}
+
+.message-quote .close {
+  left: 10px;
+}
+
+ul.postJobStep li a i:last-child {
+  float: left;
+}
+
+.attachment-box i.icon-feather-download {
+  left: 1rem;
+}
+
+.footer-links h4 a {
+  float: left;
+}
+
+.dashboard-box .btn.ico.removeaccount {
+  left: -10px;
+}
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-right: -1px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating), .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control, .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .banner-search:before {
+    transform: rotate(65deg) translate(0%, -75%);
+  }
+}
+@media all and (max-width: 175px) {
+  html.mm-opening .mm-menu.mm-opened ~ .mm-slideout {
+    -webkit-transform: translate(-140px, 0);
+    -ms-transform: translate(-140px, 0);
+    transform: translate(-140px, 0);
+    -webkit-transform: translate3d(-140px, 0, 0);
+    transform: translate3d(-140px, 0, 0);
+  }
+}
+@media all and (min-width: 550px) {
+  html.mm-opening .mm-menu.mm-opened ~ .mm-slideout {
+    -webkit-transform: translate(-440px, 0);
+    -ms-transform: translate(-440px, 0);
+    transform: translate(-440px, 0);
+    -webkit-transform: translate3d(-440px, 0, 0);
+    transform: translate3d(-440px, 0, 0);
+  }
+}
+@media (max-width: 991px) {
+  .fullwidth .header-widget:last-of-type, .header-widget:last-of-type {
+    padding-inline-end: 15px;
+    float: right;
+  }
+  .mmenu-trigger {
+    margin: 0 0 0 -5px;
+    float: left;
+  }
+  #header .end-side {
+    left: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .user-menu .header-notifications-dropdown, .header-notifications-dropdown {
+    left: -10px;
+  }
+}
+@media (min-width: 767.98px) {
+  .navbar-right .dropdown-menu {
+    right: auto !important;
+    left: 0 !important;
+  }
+  .signup:before {
+    background-color: #29b6f6;
+  }
+  .signup:after {
+    background-color: #2C597A;
+  }
+  .brr-0 {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+@media (max-width: 991.98px) {
+  .message-bubble.me .message-text {
+    margin: 0;
+  }
+}
+/* ARABIC SPECIAL */
+.pagination li a i {
+  transform: rotate(180deg);
+}
+
+/* END CSS *//*# sourceMappingURL=lang_ar.css.map */
