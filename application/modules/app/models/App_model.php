@@ -721,7 +721,9 @@ class app_model extends CI_Model
 		if(!is_numeric($lat) || !is_numeric($lng)){
 			return [];
 		}
-		$radius = get_setting('radius');
+		$radius = get_setting('radius') ? (float)get_setting('radius') : 10;
+		// Set radius to 10 km
+		$radius = 10;
 		$worker_religion = $this->input->post('provider_religion');
 		$lat = (float)$lat;
 		$lng = (float)$lng;
