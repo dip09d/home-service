@@ -717,11 +717,12 @@ class app_model extends CI_Model
 	// 		->result_array();
 	// }	
 	public function getWorkerList($subchild_id,$startDateTime,$endDateTime,$lat,$lng,$pref_gender){
-		$min_balance=200;
+		// Removed min_balance filter — it was blocking all workers with low wallet balance
+		// causing $ids to always be empty and pusher to send worker_ids: []
 		if(!is_numeric($lat) || !is_numeric($lng)){
-			return [];
+			$lat = 0;
+			$lng = 0;
 		}
-		$radius = get_setting('radius') ? (float)get_setting('radius') : 10;
 		// Set radius to 10 km
 		$radius = 10;
 		$worker_religion = $this->input->post('provider_religion');
@@ -733,7 +734,7 @@ class app_model extends CI_Model
 				ps.worker_id,
 					(
 						CASE 
-							WHEN wa.worker_lat IS NULL OR wa.worker_lng IS NULL 
+							WHEN (wa.worker_lat IS NULL OR wa.worker_lng IS NULL OR wa.worker_lat = 0 OR wa.worker_lng = 0)
 							THEN 0
 							ELSE (
 								6371 * ACOS(
@@ -751,80 +752,81 @@ class app_model extends CI_Model
 				")
 
 			->from('pref_worker_service ps')
-
-			// Join worker / wallet directly on the service's worker_id,
-			// otherwise workers without a pref_worker_address row are silently
-			// excluded (the previous chained join wa->wr / wa->wt produced
-			// NULLs for wr.is_offline and wt.balance, which then failed the
-			// filters below). This was hiding categories like Domestic Worker
-			// whose providers may not have an address row yet.
 			->join('pref_worker_address wa','wa.worker_id = ps.worker_id','left')
 			->join('pref_worker as wr','wr.worker_id = ps.worker_id','left')
-			->join('wallet as wt','wt.worker_id = ps.worker_id','left')
 
-			->where('wr.is_offline', 0)
-			->where('COALESCE(wt.balance,0) >= '.(float)$min_balance, NULL, FALSE)
+			// Only online workers
+			->where('COALESCE(wr.is_offline, 0)', 0)
+			// Only workers registered for this service
 			->where('ps.category_subchild_id', $subchild_id);
 
-			// religion
-			// if($worker_religion && $worker_religion > 0){
-			// 	$this->db->where('wr.worker_religion',$worker_religion);
-			// }
-			if($worker_religion == 'any' || $worker_religion === '' || $worker_religion == 0){
-				// Do nothing, fetch all religions
+		// religion filter
+		if($worker_religion && $worker_religion !== 'any' && $worker_religion !== '' && $worker_religion != 0){
+			if($worker_religion == 1){
+				$this->db->where('wr.worker_religion', $worker_religion);
 			}else{
-				if($worker_religion && $worker_religion == 1){
-					$this->db->where('wr.worker_religion',$worker_religion);
-				}else{
-					$this->db->where('wr.worker_religion !=',1);
-				}
+				$this->db->where('wr.worker_religion !=', 1);
 			}
-			// pref gender
-			if($pref_gender == 'any' || $pref_gender === ''){
-				// Do nothing, fetch all genders
-			}else{
-				$this->db->where('wr.worker_gender',$pref_gender);
-			}
+		}
 
-			// remove workers without coordinates
-			// ->where('wa.worker_lat IS NOT NULL', NULL, FALSE)
-			// ->where('wa.worker_lng IS NOT NULL', NULL, FALSE)
+		// pref gender filter
+		if($pref_gender && $pref_gender !== 'any' && $pref_gender !== ''){
+			$this->db->where('wr.worker_gender', $pref_gender);
+		}
 
-			// Worker unavailable
-			$this->db->where("NOT EXISTS (
-				SELECT 1 
-				FROM pref_providers_unavailablity pu
-				WHERE pu.worker_id = ps.worker_id
-				AND pu.start_time < ".$this->db->escape($endDateTime)."
-				AND pu.end_time > ".$this->db->escape($startDateTime)."
-			)", NULL, FALSE)
+		// Worker unavailable time check
+		$this->db->where("NOT EXISTS (
+			SELECT 1 
+			FROM pref_providers_unavailablity pu
+			WHERE pu.worker_id = ps.worker_id
+			AND pu.start_time < ".$this->db->escape($endDateTime)."
+			AND pu.end_time > ".$this->db->escape($startDateTime)."
+		)", NULL, FALSE)
 
-			// Already booked workers
-			->where("NOT EXISTS (
-				SELECT 1 
-				FROM pref_booking_services bs
-				WHERE bs.provider_id = ps.worker_id
-				AND bs.status IN (2,3)
-				AND bs.booking_date IS NOT NULL
-				
-				AND TIMESTAMP(bs.booking_date, bs.booking_time) < ".$this->db->escape($endDateTime)."
-				
-				AND DATE_ADD(
-					TIMESTAMP(bs.booking_date, bs.booking_time),
-					INTERVAL bs.duration_hours HOUR
-				) > ".$this->db->escape($startDateTime)."
-			)", NULL, FALSE)
+		// Already booked workers check
+		->where("NOT EXISTS (
+			SELECT 1 
+			FROM pref_booking_services bs
+			WHERE bs.provider_id = ps.worker_id
+			AND bs.status IN (2,3)
+			AND bs.booking_date IS NOT NULL
+			
+			AND TIMESTAMP(bs.booking_date, bs.booking_time) < ".$this->db->escape($endDateTime)."
+			
+			AND DATE_ADD(
+				TIMESTAMP(bs.booking_date, bs.booking_time),
+				INTERVAL bs.duration_hours HOUR
+			) > ".$this->db->escape($startDateTime)."
+		)", NULL, FALSE)
 
-			->group_by('ps.worker_id')
+		->group_by('ps.worker_id')
 
-			// within 50 KM
-			->having('distance <='.(float)$radius, NULL, FALSE)
+		// within 10 KM radius
+		->having('distance <='.(float)$radius, NULL, FALSE)
 
-			// nearest first
-			->order_by('distance','ASC');
+		// nearest first
+		->order_by('distance','ASC');
 
-			$res=$this->db->get()->result_array();
-		 // echo $this->db->last_query();
+		$res = $this->db->get()->result_array();
+		// echo $this->db->last_query();
+
+		// ---------------------------------------------------------------
+		// FALLBACK: If no workers found within radius (e.g. no lat/lng set
+		// for workers), fetch ALL online workers linked to this sub_cat_id
+		// so booking requests always reach relevant workers.
+		// ---------------------------------------------------------------
+		if(empty($res)){
+			$res = $this->db
+				->select('ps.worker_id, 0 AS distance')
+				->from('pref_worker_service ps')
+				->join('pref_worker as wr','wr.worker_id = ps.worker_id','left')
+				->where('COALESCE(wr.is_offline, 0)', 0)
+				->where('ps.category_subchild_id', $subchild_id)
+				->group_by('ps.worker_id')
+				->get()
+				->result_array();
+		}
+
 		return $res;
 	}
 
