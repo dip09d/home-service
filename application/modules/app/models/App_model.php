@@ -717,13 +717,11 @@ class app_model extends CI_Model
 	// 		->result_array();
 	// }	
 	public function getWorkerList($subchild_id,$startDateTime,$endDateTime,$lat,$lng,$pref_gender){
-		// Removed min_balance filter — it was blocking all workers with low wallet balance
-		// causing $ids to always be empty and pusher to send worker_ids: []
+		// Only fix: removed min_balance=200 — was causing $ids=[] and empty worker_ids in Pusher
 		if(!is_numeric($lat) || !is_numeric($lng)){
-			$lat = 0;
-			$lng = 0;
+			return [];
 		}
-		// Set radius to 10 km
+		// Radius set to 10 km
 		$radius = 10;
 		$worker_religion = $this->input->post('provider_religion');
 		$lat = (float)$lat;
@@ -734,7 +732,7 @@ class app_model extends CI_Model
 				ps.worker_id,
 					(
 						CASE 
-							WHEN (wa.worker_lat IS NULL OR wa.worker_lng IS NULL OR wa.worker_lat = 0 OR wa.worker_lng = 0)
+							WHEN wa.worker_lat IS NULL OR wa.worker_lng IS NULL 
 							THEN 0
 							ELSE (
 								6371 * ACOS(
@@ -755,26 +753,28 @@ class app_model extends CI_Model
 			->join('pref_worker_address wa','wa.worker_id = ps.worker_id','left')
 			->join('pref_worker as wr','wr.worker_id = ps.worker_id','left')
 
-			// Only online workers
-			->where('COALESCE(wr.is_offline, 0)', 0)
-			// Only workers registered for this service
+			->where('wr.is_offline', 0)
 			->where('ps.category_subchild_id', $subchild_id);
 
-		// religion filter
-		if($worker_religion && $worker_religion !== 'any' && $worker_religion !== '' && $worker_religion != 0){
-			if($worker_religion == 1){
+		// religion filter (original logic)
+		if($worker_religion == 'any' || $worker_religion === '' || $worker_religion == 0){
+			// fetch all religions
+		}else{
+			if($worker_religion && $worker_religion == 1){
 				$this->db->where('wr.worker_religion', $worker_religion);
 			}else{
 				$this->db->where('wr.worker_religion !=', 1);
 			}
 		}
 
-		// pref gender filter
-		if($pref_gender && $pref_gender !== 'any' && $pref_gender !== ''){
+		// pref gender filter (original logic)
+		if($pref_gender == 'any' || $pref_gender === ''){
+			// fetch all genders
+		}else{
 			$this->db->where('wr.worker_gender', $pref_gender);
 		}
 
-		// Worker unavailable time check
+		// Worker unavailable time check (original)
 		$this->db->where("NOT EXISTS (
 			SELECT 1 
 			FROM pref_providers_unavailablity pu
@@ -783,7 +783,7 @@ class app_model extends CI_Model
 			AND pu.end_time > ".$this->db->escape($startDateTime)."
 		)", NULL, FALSE)
 
-		// Already booked workers check
+		// Already booked workers check (original)
 		->where("NOT EXISTS (
 			SELECT 1 
 			FROM pref_booking_services bs
@@ -801,34 +801,17 @@ class app_model extends CI_Model
 
 		->group_by('ps.worker_id')
 
-		// within 10 KM radius
+		// within 10 KM radius (original having logic)
 		->having('distance <='.(float)$radius, NULL, FALSE)
 
-		// nearest first
+		// nearest first (original)
 		->order_by('distance','ASC');
 
 		$res = $this->db->get()->result_array();
 		// echo $this->db->last_query();
-
-		// ---------------------------------------------------------------
-		// FALLBACK: If no workers found within radius (e.g. no lat/lng set
-		// for workers), fetch ALL online workers linked to this sub_cat_id
-		// so booking requests always reach relevant workers.
-		// ---------------------------------------------------------------
-		if(empty($res)){
-			$res = $this->db
-				->select('ps.worker_id, 0 AS distance')
-				->from('pref_worker_service ps')
-				->join('pref_worker as wr','wr.worker_id = ps.worker_id','left')
-				->where('COALESCE(wr.is_offline, 0)', 0)
-				->where('ps.category_subchild_id', $subchild_id)
-				->group_by('ps.worker_id')
-				->get()
-				->result_array();
-		}
-
 		return $res;
 	}
+
 
 	
 	public function getBookingDetails($booking_id){
