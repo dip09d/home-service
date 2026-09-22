@@ -559,6 +559,7 @@ class app_model extends CI_Model
 				$member_id=insert_record('member',$insdata,TRUE);
 				
 				if($member_id){
+					insert_record('wallet', array('user_id' => $member_id, 'title' => $full_name, 'balance' => 0));
 					$template='new-registration';
 					$data_parse=array(
 					'MEMBER_URL'=>ADMIN_URL.'member/list_record',

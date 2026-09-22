@@ -10,55 +10,151 @@ class Wallet_model extends CI_Model{
 		$this->primary_key = $this->table.'_id';
         return parent::__construct();
 	}
-	public function addRecordWallet(){
-		$id=post('ID');
-		$amount=post('amount');
-		$reason=post('reason');
-		$user_id=getField('user_id', 'wallet', 'wallet_id', $id);
-		if($user_id>0){
-			
-			$bank_details=getWallet(get_setting('BANK_WALLET'));
-			$bank_wallet_id=$bank_details->wallet_id;
-			$bank_wallet_balance=$bank_details->balance;
-					
-			$member_details=getWalletMember($user_id);
-			$member_wallet_id=$member_details->wallet_id;
-			$member_wallet_balance=$member_details->balance;
-			$wallet_transaction_type_id=get_setting('ADD_FUND_BY_ADMIN');
-			$current_datetime=date('Y-m-d H:i:s');
-			$admin_message='';
-			if($reason){
-				$admin_message=$reason;
+	public function addRecordWallet($post=array()){
+		return $this->addFundToWallet($post);
+	}
+
+	public function addFundToWallet($post=array()){
+		$id = !empty($post['ID']) ? $post['ID'] : post('ID');
+		$amount = !empty($post['amount']) ? $post['amount'] : post('amount');
+		$reason = !empty($post['reason']) ? $post['reason'] : post('reason');
+		
+		if(!$id || !$amount || floatval($amount) <= 0){
+			return false;
+		}
+
+		$wallet = $this->db->where('wallet_id', $id)->get('wallet')->row();
+		if(!$wallet){
+			return false;
+		}
+
+		// Ensure Bank Wallet exists
+		$bank_wallet_id = get_setting('BANK_WALLET');
+		$bank_details = null;
+		if(!empty($bank_wallet_id)){
+			$bank_details = getWallet($bank_wallet_id);
+		}
+		if(!$bank_details){
+			$bank_details = $this->db->where('title', 'Bank Wallet')->get('wallet')->row();
+			if(!$bank_details){
+				$ins_bank = array(
+					'title' => 'Bank Wallet',
+					'balance' => 0.00,
+					'user_id' => 0,
+					'worker_id' => NULL
+				);
+				$new_bank_id = insert_record('wallet', $ins_bank, TRUE);
+				$bank_details = getWallet($new_bank_id);
 			}
-			$wallet_transaction_id=insert_record('wallet_transaction',array('wallet_transaction_type_id'=>$wallet_transaction_type_id,'status'=>1,'created_date'=>$current_datetime,'transaction_date'=>$current_datetime,'admin_message'=>$admin_message),TRUE);
-			if($wallet_transaction_id){
-				$insert_wallet_transaction_row=array('wallet_transaction_id'=>$wallet_transaction_id,'wallet_id'=>$bank_wallet_id,'debit'=>$amount,'description_tkey'=>'Payment_from','relational_data'=>'Bank');
-				$insert_wallet_transaction_row['ref_data_cell']=json_encode(array(
-				'FW'=>$bank_details->title,
-				'TW'=>$member_details->name.' wallet',	
-				'TP'=>'Payment_Payment',
-				));
-				insert_record('wallet_transaction_row',$insert_wallet_transaction_row);
-						
-				$insert_wallet_transaction_row=array('wallet_transaction_id'=>$wallet_transaction_id,'wallet_id'=>$member_wallet_id,'credit'=>$amount,'description_tkey'=>'Payment_from','relational_data'=>'Bank');
-				$insert_wallet_transaction_row['ref_data_cell']=json_encode(array(
-					'FW'=>$bank_details->title,
-					'TW'=>$member_details->name.' wallet',	
-					'TP'=>'Wallet_Topup',
-					));
-				insert_record('wallet_transaction_row',$insert_wallet_transaction_row);
-						
-						
-				$new_balance=displayamount($member_wallet_balance,2)+displayamount($amount,2);
-				updateTable('wallet',array('balance'=>$new_balance),array('wallet_id'=>$member_wallet_id));
-				wallet_balance_check($member_wallet_id,array('transaction_id'=>$wallet_transaction_id));
-				$new_balance_bank=displayamount($bank_wallet_balance,2)-displayamount($amount,2);
-				updateTable('wallet',array('balance'=>$new_balance_bank),array('wallet_id'=>$bank_wallet_id));
-				wallet_balance_check($bank_wallet_id,array('transaction_id'=>$wallet_transaction_id));
-				
-				return $wallet_transaction_id;
+			if($bank_details){
+				updateTable('settings', array('setting_value' => $bank_details->wallet_id), array('setting_key' => 'BANK_WALLET'));
 			}
 		}
+
+		$bank_wallet_id = $bank_details ? $bank_details->wallet_id : $wallet->wallet_id;
+		$bank_wallet_balance = $bank_details ? $bank_details->balance : 0.0;
+
+		$wallet_transaction_type_id = get_setting('ADD_FUND_BY_ADMIN');
+		if(empty($wallet_transaction_type_id)){
+			$wallet_transaction_type_id = 5;
+		}
+		$current_datetime = date('Y-m-d H:i:s');
+		$admin_message = $reason ? $reason : '';
+
+		$wallet_transaction_id = insert_record('wallet_transaction', array(
+			'wallet_transaction_type_id' => $wallet_transaction_type_id,
+			'status' => 1,
+			'created_date' => $current_datetime,
+			'transaction_date' => $current_datetime,
+			'admin_message' => $admin_message
+		), TRUE);
+
+		if($wallet_transaction_id){
+			// Bank debit row
+			$insert_bank_row = array(
+				'wallet_transaction_id' => $wallet_transaction_id,
+				'wallet_id' => $bank_wallet_id,
+				'debit' => $amount,
+				'credit' => 0.00,
+				'description_tkey' => 'Payment_from',
+				'relational_data' => 'Bank',
+				'ref_data_cell' => json_encode(array(
+					'FW' => $bank_details ? $bank_details->title : 'Bank Wallet',
+					'TW' => $wallet->title . ' wallet',
+					'TP' => 'Payment_Payment',
+				))
+			);
+			insert_record('wallet_transaction_row', $insert_bank_row);
+
+			// Target wallet credit row
+			$insert_target_row = array(
+				'wallet_transaction_id' => $wallet_transaction_id,
+				'wallet_id' => $wallet->wallet_id,
+				'debit' => 0.00,
+				'credit' => $amount,
+				'description_tkey' => 'Payment_from',
+				'relational_data' => 'Bank',
+				'ref_data_cell' => json_encode(array(
+					'FW' => $bank_details ? $bank_details->title : 'Bank Wallet',
+					'TW' => $wallet->title . ' wallet',
+					'TP' => 'Wallet_Topup',
+				))
+			);
+			insert_record('wallet_transaction_row', $insert_target_row);
+
+			// Update Target Wallet balance
+			$new_balance = floatval($wallet->balance) + floatval($amount);
+			updateTable('wallet', array('balance' => $new_balance), array('wallet_id' => $wallet->wallet_id));
+			wallet_balance_check($wallet->wallet_id, array('transaction_id' => $wallet_transaction_id));
+
+			// Update Bank Wallet balance
+			if($bank_details && $bank_details->wallet_id != $wallet->wallet_id){
+				$new_balance_bank = floatval($bank_wallet_balance) - floatval($amount);
+				updateTable('wallet', array('balance' => $new_balance_bank), array('wallet_id' => $bank_wallet_id));
+				wallet_balance_check($bank_wallet_id, array('transaction_id' => $wallet_transaction_id));
+			}
+
+			// If worker wallet, notify worker
+			if(!empty($wallet->worker_id) && $wallet->worker_id > 0){
+				$worker_id = $wallet->worker_id;
+				$unique_id = $worker_id . '-' . time();
+				$transansaction_data = array(
+					'payment_type' => 'ADD_FUND_BY_ADMIN',
+					'content_key' => md5('PPAY-' . $unique_id),
+					'request_value' => json_encode(array(
+						'amount' => $amount,
+						'org_amt' => $amount,
+						'fee' => 0,
+						'custom' => md5('PPAY-' . $unique_id),
+						'worker_id' => $worker_id,
+						'amount_converted' => $amount
+					))
+				);
+				insert_record('online_transaction_data', $transansaction_data);
+
+				try {
+					$this->load->library('pusher');
+					$pusher = $this->pusher->load();
+					if($pusher){
+						$pusher->trigger('new_balance_' . $worker_id, 'booking-accepted', array(
+							'new_balance' => $new_balance
+						));
+					}
+				} catch (\Throwable $e) {}
+
+				$mobile = getField('worker_phone', 'worker', 'worker_id', $worker_id);
+				if($mobile && $amount > 0){
+					$currency = ($amount == 1) ? 'Re.' : 'Rs.';
+					$amt_var = $currency . ' ' . $amount;
+					$smstext = 'Your service provider wallet has been successfully recharged with ' . $amt_var . '. You can now accept jobs and start earning more. Thank you for choosing SNAPHIVE.';
+					sendSMS($mobile, '1707177633556818028', $smstext);
+				}
+			}
+
+			return $wallet_transaction_id;
+		}
+
+		return false;
 	}
 	public function getList($srch=array(), $limit=0, $offset=20, $for_list=TRUE){
 		$this->db->select('*')
@@ -273,79 +369,8 @@ class Wallet_model extends CI_Model{
 		}
 		return $result;
 	}
-	public function addRecordWalletWorker(){
-		$id=post('ID');
-		$amount=post('amount');
-		$reason=post('reason');
-		$worker_id=getField('worker_id', 'wallet', 'wallet_id', $id);
-		if($worker_id>0){
-			$bank_details=getWallet(get_setting('BANK_WALLET'));
-			$bank_wallet_id=$bank_details->wallet_id;
-			$bank_wallet_balance=$bank_details->balance;
-			$worker_details=getWalletWorker($worker_id);
-			$worker_wallet_id=$worker_details->wallet_id;
-			$worker_wallet_balance=$worker_details->balance;
-			$wallet_transaction_type_id=get_setting('ADD_FUND_BY_ADMIN');
-			$current_datetime=date('Y-m-d H:i:s');
-			$admin_message='';
-			if($reason){
-				$admin_message=$reason;
-			}
-			$wallet_transaction_id=insert_record('wallet_transaction',array('wallet_transaction_type_id'=>$wallet_transaction_type_id,'status'=>1,'created_date'=>$current_datetime,'transaction_date'=>$current_datetime,'admin_message'=>$admin_message),TRUE);
-			if($wallet_transaction_id){
-				$insert_wallet_transaction_row=array('wallet_transaction_id'=>$wallet_transaction_id,'wallet_id'=>$bank_wallet_id,'debit'=>$amount,'description_tkey'=>'Payment_from','relational_data'=>'Bank');
-				$insert_wallet_transaction_row['ref_data_cell']=json_encode(array(
-				'FW'=>$bank_details->title,
-				'TW'=>$worker_details->name.' wallet',	
-				'TP'=>'Payment_Payment',
-				));
-				insert_record('wallet_transaction_row',$insert_wallet_transaction_row);
-						
-				$insert_wallet_transaction_row=array('wallet_transaction_id'=>$wallet_transaction_id,'wallet_id'=>$worker_wallet_id,'credit'=>$amount,'description_tkey'=>'Payment_from','relational_data'=>'Bank');
-				$insert_wallet_transaction_row['ref_data_cell']=json_encode(array(
-					'FW'=>$bank_details->title,
-					'TW'=>$worker_details->name.' wallet',	
-					'TP'=>'Wallet_Topup',
-					));
-				insert_record('wallet_transaction_row',$insert_wallet_transaction_row);
-						
-						
-				$new_balance=displayamount($worker_wallet_balance,2)+displayamount($amount,2);
-				updateTable('wallet',array('balance'=>$new_balance),array('wallet_id'=>$worker_wallet_id));
-				wallet_balance_check($worker_wallet_id,array('transaction_id'=>$wallet_transaction_id));
-				$new_balance_bank=displayamount($bank_wallet_balance,2)-displayamount($amount,2);
-				updateTable('wallet',array('balance'=>$new_balance_bank),array('wallet_id'=>$bank_wallet_id));
-				wallet_balance_check($bank_wallet_id,array('transaction_id'=>$wallet_transaction_id));
-
-				
-				$unique_id=$worker_id.'-'.time();	
-				$data['formdata']=array(
-					'amount'=>$amount,
-					'org_amt'=>$amount,
-					'fee'=>0,
-					//'return_url'=>base_url('app/user/payment_success/'.$this->worker_id),
-					//'cancel_url'=>base_url('app/user/payment_failed/'.$this->worker_id),
-					//'notify_url'=>get_link('PaypalNotify').'addfund/'.$unique_id,
-					'custom'=>md5('PPAY-'.$unique_id),
-					'worker_id'=>$worker_id,
-				);
-				$transansaction_data=array('payment_type'=>'ADD_FUND_BY_ADMIN','content_key'=> $data['formdata']['custom']);
-
-				$data['formdata']['amount_converted']=$amount;
-				$transansaction_data['request_value']=json_encode( $data['formdata']);
-				insert_record('online_transaction_data',$transansaction_data);
-				// new balance by pusher
-				$this->load->library('pusher');
-				$pusher=$this->pusher->load();
-				$pusherData=array(
-					'new_balance'=>getField('balance','wallet','wallet_id',$id),
-				);
-				$channel_id = 'new_balance_'.$worker_id;
-				$res=$pusher->trigger($channel_id, 'booking-accepted',$pusherData);
-				
-				return $wallet_transaction_id;
-			}
-		}
+	public function addRecordWalletWorker($post=array()){
+		return $this->addFundToWallet($post);
 	}
 	
 }

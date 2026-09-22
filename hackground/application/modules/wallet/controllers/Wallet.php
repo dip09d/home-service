@@ -358,14 +358,14 @@ class Wallet extends MX_Controller {
 		}else if($page == 'add_fund'){
 			$id = get('id');
 			$this->data['ID']= $id;
-			// $user_id=getField('user_id', 'wallet', 'wallet_id', $id);
 			$worker_id=getField('worker_id', 'wallet', 'wallet_id', $id);
+			$user_id=getField('user_id', 'wallet', 'wallet_id', $id);
 			$this->data['wallet_title'] = getField('title', 'wallet', 'wallet_id', $id);
 			$this->data['title'] = 'Add Fund To Wallet - '.$this->data['wallet_title'];
-			// if($user_id>0){
 			if($worker_id>0){
-				// $this->data['info'] = getField('member_email', 'member', 'member_id', $user_id);	
-				$this->data['info'] = getField('worker_email', 'worker', 'worker_email', $worker_id);	
+				$this->data['info'] = getField('worker_email', 'worker', 'worker_id', $worker_id);	
+			}elseif($user_id>0){
+				$this->data['info'] = getField('member_email', 'member', 'member_id', $user_id);
 			}else{
 				$this->data['info'] = '';
 			}
@@ -382,32 +382,15 @@ class Wallet extends MX_Controller {
 			$this->form_validation->set_rules('reason', 'reason', '');
 			if($this->form_validation->run()){
 				$post = post();
-				// $insert = $this->wallet->addRecordWallet($post);
-				$insert = $this->wallet->addRecordWalletWorker($post);
+				$insert = $this->wallet->addFundToWallet($post);
 				if($insert > 0){
-					$worker_id=getField('worker_id', 'wallet', 'wallet_id', post('ID'));
-					$mobile=getField('worker_phone','worker','worker_id',$worker_id);
-					// echo $mobile; die;
-					$amount = post('amount');
-					$currency = ($amount == 1) ? 'Re.' : 'Rs.';
-					$amt_var = $currency.' '.$amount;
-					if($mobile && $amount > 0){
-						$smstext='Your service provider wallet has been successfully recharged with '.$amt_var.'. You can now accept jobs and start earning more. Thank you for choosing SNAPHIVE.';
-						$sendSms=sendSMS($mobile,'1707177633556818028',$smstext);
-						/* if($sendSms && $sendSms['status']==1){
-							$response['status'] = 1;
-							$response['otp'] = $otp;
-						}else{
-							$response['otp'] = $otp;
-							$response['status'] = 0;
-							$response['errors'] = 'SMS sending failed';
-						} */
+					if(post('add_more') && post('add_more') == '1'){
+						$this->api->cmd('reset_form');
+					}else{
+						$this->api->cmd('reload');
 					}
-				}
-				if(post('add_more') && post('add_more') == '1'){
-					$this->api->cmd('reset_form');
 				}else{
-					$this->api->cmd('reload');
+					$this->api->set_error('action_failed', 'Failed to add fund');
 				}
 			}else{
 				$errors = validation_errors_array();
