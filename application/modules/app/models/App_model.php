@@ -716,100 +716,122 @@ class app_model extends CI_Model
 	// 		->get()
 	// 		->result_array();
 	// }	
-	public function getWorkerList($subchild_id,$startDateTime,$endDateTime,$lat,$lng,$pref_gender){
-		// Only fix: removed min_balance=200 — was causing $ids=[] and empty worker_ids in Pusher
-		if(!is_numeric($lat) || !is_numeric($lng)){
-			return [];
-		}
-		// Radius set to 10 km
+	public function getWorkerList($subchild_id,$startDateTime,$endDateTime,$lat=0,$lng=0,$pref_gender='any'){
 		$radius = 10;
 		$worker_religion = $this->input->post('provider_religion');
-		$lat = (float)$lat;
-		$lng = (float)$lng;
-		
+		$lat = is_numeric($lat) ? (float)$lat : 0.0;
+		$lng = is_numeric($lng) ? (float)$lng : 0.0;
+		$has_coords = ($lat != 0.0 && $lng != 0.0);
+
+		$res = $this->_fetchWorkerList($subchild_id, $startDateTime, $endDateTime, $lat, $lng, $pref_gender, $worker_religion, $has_coords ? $radius : null);
+
+		// If no workers found within 10 km, fallback to wider radius or without distance limit so requests reach workers
+		if (empty($res) && $has_coords) {
+			$res = $this->_fetchWorkerList($subchild_id, $startDateTime, $endDateTime, $lat, $lng, $pref_gender, $worker_religion, 50);
+			if (empty($res)) {
+				$res = $this->_fetchWorkerList($subchild_id, $startDateTime, $endDateTime, $lat, $lng, $pref_gender, $worker_religion, null);
+			}
+		}
+
+		return $res;
+	}
+
+	private function _fetchWorkerList($subchild_id, $startDateTime, $endDateTime, $lat, $lng, $pref_gender, $worker_religion, $radius = null){
+		$has_coords = ($lat != 0.0 && $lng != 0.0);
+
+		if ($has_coords) {
+			$dist_select = "(
+				CASE 
+					WHEN wa.worker_lat IS NULL OR wa.worker_lng IS NULL OR wa.worker_lat = 0 OR wa.worker_lng = 0 
+					THEN 0
+					ELSE ROUND(
+						6371 * ACOS(
+							GREATEST(-1, LEAST(1,
+								COS(RADIANS(".$this->db->escape($lat)."))
+								* COS(RADIANS(wa.worker_lat))
+								* COS(RADIANS(wa.worker_lng) - RADIANS(".$this->db->escape($lng)."))
+								+ SIN(RADIANS(".$this->db->escape($lat)."))
+								* SIN(RADIANS(wa.worker_lat))
+							))
+						), 2
+					)
+				END
+			) AS distance";
+		} else {
+			$dist_select = "0 AS distance";
+		}
+
 		$this->db
-			->select("
-				ps.worker_id,
-					(
-						CASE 
-							WHEN wa.worker_lat IS NULL OR wa.worker_lng IS NULL 
-							THEN 0
-							ELSE (
-								6371 * ACOS(
-									LEAST(1,
-										COS(RADIANS(".$this->db->escape($lat)."))
-										* COS(RADIANS(wa.worker_lat))
-										* COS(RADIANS(wa.worker_lng) - RADIANS(".$this->db->escape($lng)."))
-										+ SIN(RADIANS(".$this->db->escape($lat)."))
-										* SIN(RADIANS(wa.worker_lat))
-									)
-								)
-							)
-						END
-					) AS distance
-				")
-
+			->select("ps.worker_id, " . $dist_select, FALSE)
 			->from('pref_worker_service ps')
-			->join('pref_worker_address wa','wa.worker_id = ps.worker_id','left')
-			->join('pref_worker as wr','wr.worker_id = ps.worker_id','left')
-
-			->where('wr.is_offline', 0)
+			->join('pref_worker_address wa', 'wa.worker_id = ps.worker_id', 'left')
+			->join('pref_worker wr', 'wr.worker_id = ps.worker_id', 'left')
+			->group_start()
+				->where('wr.is_offline', 0)
+				->or_where('wr.is_offline IS NULL', NULL, FALSE)
+			->group_end()
 			->where('ps.category_subchild_id', $subchild_id);
 
-		// religion filter (original logic)
-		if($worker_religion == 'any' || $worker_religion === '' || $worker_religion == 0){
-			// fetch all religions
-		}else{
-			if($worker_religion && $worker_religion == 1){
-				$this->db->where('wr.worker_religion', $worker_religion);
-			}else{
+		// Religion filter
+		if (!empty($worker_religion) && !in_array(strtolower(trim((string)$worker_religion)), ['any', 'all', '0'])) {
+			if ($worker_religion == 1) {
+				$this->db->where('wr.worker_religion', 1);
+			} else {
 				$this->db->where('wr.worker_religion !=', 1);
 			}
 		}
 
-		// pref gender filter (original logic)
-		if($pref_gender == 'any' || $pref_gender === ''){
-			// fetch all genders
-		}else{
-			$this->db->where('wr.worker_gender', $pref_gender);
+		// Gender filter (normalizes male/female/m/f/any)
+		if (!empty($pref_gender)) {
+			$gender = strtolower(trim((string)$pref_gender));
+			if (!in_array($gender, ['any', 'all', '', '-1', '0'])) {
+				if (in_array($gender, ['male', 'm'])) {
+					$this->db->where('wr.worker_gender', 'M');
+				} elseif (in_array($gender, ['female', 'f'])) {
+					$this->db->where('wr.worker_gender', 'F');
+				} else {
+					$this->db->where('wr.worker_gender', $pref_gender);
+				}
+			}
 		}
 
-		// Worker unavailable time check (original)
+		// Worker unavailable time check (only if table exists in db)
+		if ($this->db->table_exists('providers_unavailablity')) {
+			$table_unavail = $this->db->dbprefix('providers_unavailablity');
+			$this->db->where("NOT EXISTS (
+				SELECT 1 
+				FROM {$table_unavail} pu
+				WHERE pu.worker_id = ps.worker_id
+				AND pu.start_time < ".$this->db->escape($endDateTime)."
+				AND pu.end_time > ".$this->db->escape($startDateTime)."
+			)", NULL, FALSE);
+		}
+
+		// Already booked workers check
+		$table_booking = $this->db->dbprefix('booking_services');
 		$this->db->where("NOT EXISTS (
 			SELECT 1 
-			FROM pref_providers_unavailablity pu
-			WHERE pu.worker_id = ps.worker_id
-			AND pu.start_time < ".$this->db->escape($endDateTime)."
-			AND pu.end_time > ".$this->db->escape($startDateTime)."
-		)", NULL, FALSE)
-
-		// Already booked workers check (original)
-		->where("NOT EXISTS (
-			SELECT 1 
-			FROM pref_booking_services bs
+			FROM {$table_booking} bs
 			WHERE bs.provider_id = ps.worker_id
 			AND bs.status IN (2,3)
 			AND bs.booking_date IS NOT NULL
-			
+			AND bs.booking_date != '0000-00-00'
 			AND TIMESTAMP(bs.booking_date, bs.booking_time) < ".$this->db->escape($endDateTime)."
-			
 			AND DATE_ADD(
 				TIMESTAMP(bs.booking_date, bs.booking_time),
 				INTERVAL bs.duration_hours HOUR
 			) > ".$this->db->escape($startDateTime)."
-		)", NULL, FALSE)
+		)", NULL, FALSE);
 
-		->group_by('ps.worker_id')
+		$this->db->group_by('ps.worker_id');
 
-		// within 10 KM radius (original having logic)
-		->having('distance <='.(float)$radius, NULL, FALSE)
+		if ($radius !== null && $has_coords) {
+			$this->db->having('distance <= ' . (float)$radius, NULL, FALSE);
+		}
 
-		// nearest first (original)
-		->order_by('distance','ASC');
+		$this->db->order_by('distance', 'ASC');
 
-		$res = $this->db->get()->result_array();
-		// echo $this->db->last_query();
-		return $res;
+		return $this->db->get()->result_array();
 	}
 
 
@@ -1091,7 +1113,7 @@ class app_model extends CI_Model
 		$this->db->select('name,member_landmark,member_address_1,member_address_2,member_address_type,member_mobile,member_lat as lat,member_lng as lng')
 			->from('member_address')
 			->where('member_address_id', $member_address_id)
-			->where('address_status', 1);
+			->where('address_status !=', 0);
 
 		return $this->db->get()->row_array();
 	}

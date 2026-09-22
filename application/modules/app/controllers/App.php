@@ -653,14 +653,10 @@ class App extends MX_Rest{
 				
 
 
-				$ids = ($worker_ids  ? array_column($worker_ids, 'worker_id'):[]);
-				// $ids[]="20";
-				$this->load->library('pusher');
-				$pusher=$this->pusher->load();
+				$ids = ($worker_ids  ? array_values(array_unique(array_column($worker_ids, 'worker_id'))):[]);
 				$customer_name=getFieldData('member_name','member','member_id',$this->member_id);
 				$price=getFieldData('price','category_subchild','category_subchild_id',post('sub_cat_id'));
 				$get_cat_name = $this->app->get_subchild_name(post('sub_cat_id'));
- 				//echo $this->db->last_query(); die;
 				
 				$pusherData=array(
 					'worker_ids'=>$ids,
@@ -682,20 +678,28 @@ class App extends MX_Rest{
 						'price' => $price,
 						'book_date'=>$booking_date,
 						'book_time'=>$booking_time,
-						'category'=> $get_cat_name['category_subchild_name'],
+						'category'=> $get_cat_name['category_subchild_name'] ?? '',
 						'special_instructions' => post('special_instructions'),
 					]
 				);
 
-				// Trigger on individual worker channels for clean routing
-				if (!empty($ids)) {
-					foreach ($ids as $wid) {
-						$pusher->trigger('worker-' . $wid, 'booking_service', $pusherData);
-					}
-				}
+				try {
+					$this->load->library('pusher');
+					$pusher=$this->pusher->load();
+					if ($pusher) {
+						// Trigger on individual worker channels for clean routing
+						if (!empty($ids)) {
+							foreach ($ids as $wid) {
+								$pusher->trigger('worker-' . $wid, 'booking_service', $pusherData);
+							}
+						}
 
-				// Also trigger on 'booking_request' channel with filtered worker_ids for existing client app builds
-				$pusher->trigger('booking_request', 'booking_service', $pusherData);
+						// Also trigger on 'booking_request' channel with filtered worker_ids for existing client app builds
+						$pusher->trigger('booking_request', 'booking_service', $pusherData);
+					}
+				} catch (\Throwable $pe) {
+					log_message('error', 'Pusher trigger error: ' . $pe->getMessage());
+				}
 
 				$oneSignalData= array(
 					'heading' => 'New Booking',
